@@ -1,4 +1,4 @@
-<%@page import="vo.User2VO"%>
+<%@page import="vo.User4VO"%>
 <%@page import="java.util.ArrayList"%>
 <%@page import="java.util.List"%>
 <%@page import="java.sql.ResultSet"%>
@@ -11,19 +11,20 @@
 	String user = "root";
 	String pass = "1234";
 	
-	List<User2VO> users = new ArrayList<>();
+	List<User4VO> users = new ArrayList<>();
 	
 	try {
 		Class.forName("com.mysql.cj.jdbc.Driver");
 		Connection conn = DriverManager.getConnection(host, user, pass);
 		Statement stmt = conn.createStatement();
-		ResultSet rs = stmt.executeQuery("SELECT * FROM `user2`");
+		ResultSet rs = stmt.executeQuery("SELECT * FROM `user4`");
 		while(rs.next()){
-			User2VO vo = new User2VO();
-			vo.setUid(rs.getString(1));
+			User4VO vo = new User4VO();
+			vo.setSeq(rs.getInt(1));
 			vo.setName(rs.getString(2));
-			vo.setHp(rs.getString(3));
+			vo.setGender(rs.getInt(3));
 			vo.setAge(rs.getInt(4));
+			vo.setAddr(rs.getString(5));
 			users.add(vo);
 		}
 		rs.close();
@@ -37,12 +38,12 @@
 <html>
 	<head>
 		<meta charset="UTF-8">
-		<title>user2::list</title>
+		<title>user4::list</title>
 	</head>
 	<body>
-		<h3>User2 목록</h3>
+		<h3>User4 목록</h3>
 		<a href="/Ch06/1_JDBC.jsp">처음으로</a>
-		<a href="/Ch06/user2/register.jsp">User2 등록</a>
+		<a href="/Ch06/user4/register.jsp">User4 등록</a>
 		<table border="1">
 			<tr>
 				<th>아이디</th>
@@ -52,16 +53,16 @@
 				<th>관리</th>
 			</tr>
 			<%
-			for (User2VO vo : users) {
+			for (User4VO vo : users) {
 			%>
 			<tr>
-				<td><%=vo.getUid()%></td>
 				<td><%=vo.getName()%></td>
-				<td><%=vo.getHp()%></td>
+				<td><%=vo.getGender() == 1 ? "남자" : "여자"%></td>
 				<td><%=vo.getAge()%></td>
+				<td><%=vo.getAddr()%></td>
 				<td>
-					<a href="/Ch06/user2/modify.jsp?uid=<%=vo.getUid()%>">수정</a>
-					<a href="/Ch06/user2/delete.jsp?uid=<%=vo.getUid()%>">삭제</a>
+					<a href="/Ch06/user4/modify.jsp?seq=<%=vo.getSeq()%>">수정</a>
+					<a href="/Ch06/user4/delete.jsp?seq=<%=vo.getSeq()%>">삭제</a>
 				</td>
 			</tr>
 			<%

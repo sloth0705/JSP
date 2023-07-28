@@ -1,4 +1,4 @@
-<%@page import="vo.User2VO"%>
+<%@page import="vo.User3VO"%>
 <%@page import="java.sql.ResultSet"%>
 <%@page import="java.sql.PreparedStatement"%>
 <%@page import="java.sql.DriverManager"%>
@@ -8,14 +8,14 @@
 	request.setCharacterEncoding("UTF-8");
 	String uid = request.getParameter("uid");
 	
-	User2VO vo = new User2VO();
+	User3VO vo = new User3VO();
 	String host = "jdbc:mysql://127.0.0.1:3306/userdb";
 	String user = "root";
 	String pass = "1234";
 	try {
 		Class.forName("com.mysql.cj.jdbc.Driver");
 		Connection conn = DriverManager.getConnection(host, user, pass);
-		PreparedStatement psmt = conn.prepareStatement("SELECT * FROM `user2` WHERE `uid` = ?");
+		PreparedStatement psmt = conn.prepareStatement("SELECT * FROM `user3` WHERE `uid` = ?");
 		psmt.setString(1, uid);
 		ResultSet rs = psmt.executeQuery();
 		if (rs.next()) {
@@ -35,13 +35,13 @@
 <html>
 	<head>
 		<meta charset="UTF-8">
-		<title>user2::modify</title>
+		<title>user3::modify</title>
 	</head>
 	<body>
-		<h3>User2 수정</h3>
+		<h3>User3 수정</h3>
 		<a href="/Ch06/1_JDBC.jsp">처음으로</a>
-		<a href="/Ch06/user2/list.jsp">User2 목록</a>
-		<form action="/Ch06/user2/modifyProc.jsp" method="post">
+		<a href="/Ch06/user3/list.jsp">User3 목록</a>
+		<form action="/Ch06/user3/modifyProc.jsp" method="post">
 			<table border="1">
 				<tr>
 					<td>아이디</td>
