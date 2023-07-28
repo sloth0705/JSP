@@ -52,8 +52,8 @@
 				<tr>
 					<td>성별</td>
 					<td>
-						<label><input type="radio" name="gender" value="1" checked="<%= vo.getGender() == 1 ? "checked" : "" %>" >남자</label>
-						<label><input type="radio" name="gender" value="2" checked="<%= vo.getGender() == 1 ? "checked" : "" %>">여자</label>
+						<label><input type="radio" name="gender" value="1" <%= vo.getGender() == 1 ? "checked" : "" %>>남자</label>
+						<label><input type="radio" name="gender" value="2" <%= vo.getGender() == 2 ? "checked" : "" %>>여자</label>
 					</td>
 				</tr>
 				<tr>

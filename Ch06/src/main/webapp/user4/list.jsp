@@ -46,10 +46,10 @@
 		<a href="/Ch06/user4/register.jsp">User4 등록</a>
 		<table border="1">
 			<tr>
-				<th>아이디</th>
 				<th>이름</th>
-				<th>휴대폰</th>
+				<th>성별</th>
 				<th>나이</th>
+				<th>주소</th>
 				<th>관리</th>
 			</tr>
 			<%
