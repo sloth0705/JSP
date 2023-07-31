@@ -1,3 +1,6 @@
+<%@page import="javax.naming.InitialContext"%>
+<%@page import="javax.sql.DataSource"%>
+<%@page import="javax.naming.Context"%>
 <%@page import="java.sql.PreparedStatement"%>
 <%@page import="java.sql.DriverManager"%>
 <%@page import="java.sql.Connection"%>
@@ -14,8 +17,10 @@
 	String user = "root";
 	String pass = "1234";
 	try {
-		Class.forName("com.mysql.cj.jdbc.Driver");
-		Connection conn = DriverManager.getConnection(host, user, pass);
+		Context initCtx = new InitialContext();
+		Context ctx = (Context) initCtx.lookup("java:comp/env"); // JNDI 기본 환경이름
+		DataSource ds = (DataSource) ctx.lookup("jdbc/userdb");
+		Connection conn = ds.getConnection();
 		PreparedStatement psmt = conn.prepareStatement("UPDATE `user2` SET `name` = ?, `hp` = ?, `age` = ? WHERE `uid` = ?");
 		psmt.setString(1, name);
 		psmt.setString(2, hp);
