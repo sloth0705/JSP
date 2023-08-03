@@ -15,6 +15,7 @@
 		<item key="incremental" value="false"/>
 		<item key="isRegEx" value="false"/>
 		<list key="findhistory">
+			<item value="김철학"/>
 			<item value=" value=&quot;&quot;"/>
 			<item value="&#x0D;&#x0A;&#x09;&#x09;&#x09;pageContext.forward(&quot;./target.jsp&quot;);&#x0D;&#x0A;&#x09;&#x09;%&gt;"/>
 			<item value="exception"/>

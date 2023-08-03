@@ -7,30 +7,48 @@
     <title>Jboard::register</title>
     <link rel="stylesheet" href="../css/style.css">
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.7.0/jquery.min.js"></script>
+    <script src="//t1.daumcdn.net/mapjsapi/bundle/postcode/prod/postcode.v2.js"></script>
+    <script src='/Jboard1/js/zipcode.js'></script>
+    <script src='/Jboard1/js/checkUser.js'></script>
     <script>
+    	// 폼 데이터 검증결과 상태변수
+    	let isUidOk = false;
+    	let isPassOk = false;
+    	let isNameOk = false;
+    	let isNickOk = false;
+    	let isEmailOk = false;
+    	let isHpOk = false;
+    
+    	// 유효성 검증(Validation)
     	$(function() {
-    		$('#btnCheckUid').click(function(e) {
-    			const uid = $('input[name=uid]').val();
-    			if (uid == '') {
-    				$('.resultId').css('color', 'red').text('아이디를 입력해주세요.');
-    				return;
-    			}
-    			const jsonData = {
-    					"uid" : uid
-    			};
-    			$.ajax({
-    				url : '/Jboard1/user/checkUid.jsp',
-    				type : 'GET',
-    				data : jsonData,
-    				dataType : 'json',
-    				success : function(data){
-    					if (data.result > 0) {
-    						$('.resultId').css('color', 'red').text('이미 사용중인 아이디입니다.');
-    					} else {
-    						$('.resultId').css('color', 'green').text('사용가능한 아이디입니다.');
-    					}
-    				}
-    			});
+    		// 아이디 검사
+    		if (!isUidOk) {
+    			return false;
+    		}
+    		// 비밀번호 검사
+    		if (!isPassOk) {
+    			return false;
+    		}
+    		// 이름 검사
+    		if (!isNameOk) {
+    			return false;
+    		}
+    		// 별명 검사
+    		if (!isNickOk) {
+    			return false;
+    		}
+    		// 이메일 검사
+    		if (!isEmailOk) {
+    			return false;
+    		}
+    		// 휴대폰 검사
+    		if (!isHpOk) {
+    			return false;
+    		}
+    		// 최종 전송
+    		$('#formUser').submit(function() {
+    			alert('!!!');
+    			return false; // 폼 전송 취소
     		});
     	});
     </script>
@@ -42,7 +60,7 @@
         </header>
         <main>
             <section class="register">
-                <form action="/Jboard1/user/registerProc.jsp" method="post">
+                <form id='formUser' action="/Jboard1/user/registerProc.jsp" method="post">
                     <table border="1">
                         <caption>사이트 이용정보 입력</caption>
                         <tr>
@@ -87,12 +105,14 @@
                             <td>E-Mail</td>
                             <td>
                                 <input type="email" name="email" placeholder="이메일 입력"/>
+                                <span id="resultEmail"></span>
                             </td>
                         </tr>
                         <tr>
                             <td>휴대폰</td>
                             <td>
                                 <input type="text" name="hp" placeholder="- 포함 13자리 입력" minlength="13" maxlength="13" />
+                                <span id="resultHp"></span>
                             </td>
                         </tr>
                         <tr>
@@ -100,7 +120,7 @@
                             <td>
                                 <div>
                                     <input type="text" name="zip" placeholder="우편번호" readonly/>                                
-                                    <button class="btnZip"><img src="../images/chk_post.gif" alt=""></button>
+                                    <button type='button' class="btnZip" onclick='zipcode()'><img src="../images/chk_post.gif" alt=""></button>
                                 </div>                            
                                 <div>
                                     <input type="text" name="addr1" placeholder="주소를 검색하세요." readonly/>
