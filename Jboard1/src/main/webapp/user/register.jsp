@@ -9,7 +9,6 @@
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.7.0/jquery.min.js"></script>
     <script src="//t1.daumcdn.net/mapjsapi/bundle/postcode/prod/postcode.v2.js"></script>
     <script src='/Jboard1/js/zipcode.js'></script>
-    <script src='/Jboard1/js/checkUser.js'></script>
     <script>
     	// 폼 데이터 검증결과 상태변수
     	let isUidOk = false;
@@ -19,30 +18,80 @@
     	let isEmailOk = false;
     	let isHpOk = false;
     
+    	// 데이터 검증에 사용하는 정규표현식
+    	let reUid   = /^[a-z]+[a-z0-9]{4,19}$/g;
+    	let rePass  = /^(?=.*[a-zA-z])(?=.*[0-9])(?=.*[$`~!@$!%*#^?&\\(\\)\-_=+]).{5,16}$/;
+    	let reName  = /^[가-힣]{2,10}$/ 
+    	let reNick  = /^[a-zA-Zㄱ-힣0-9][a-zA-Zㄱ-힣0-9]*$/;
+    	let reEmail = /^[0-9a-zA-Z]([-_\.]?[0-9a-zA-Z])*@[0-9a-zA-Z]([-_\.]?[0-9a-zA-Z])*\.[a-zA-Z]{2,3}$/i;
+    	let reHp    = /^01(?:0|1|[6-9])-(?:\d{4})-\d{4}$/;
+    	
     	// 유효성 검증(Validation)
     	$(function() {
     		// 아이디 검사
+    		$('input[name=uid]').keydown(function() {
+    			isUidOk = false;
+    			$('.resultId').css('color', 'red').text('');
+    		});
+    		
+    		// 비밀번호 검사
+    		$('input[name=pass2]').focusout(function() {
+    			const pass1 = $('input[name=pass1]').val();
+    			const pass2 = $('input[name=pass2]').val();
+    			if (pass1 == pass2) {
+    				if (pass1.match(rePass)) {
+    					$('.resultPass').css('color', 'green').text('사용 가능한 비밀번호 입니다.');
+    					isPassOk = true;
+    				} else {
+    					$('.resultPass').css('color', 'red').text('비밀번호는 숫자, 영문, 특수문자 조합 5자리 이상이어야 합니다.');
+    					isPassOk = false;
+    				}
+    			} else {
+    				$('.resultPass').css('color', 'red').text('비밀번호가 일치하지 않습니다.');
+    				isPassOk = false;
+    			}
+    		});
+    		
+    		// 이름 검사
+    		$('input[name=name]').focusout(function() {
+    			const name = $(this).val();
+    			if (!name.match(reName)) {
+    				$('.resultName').css('color', 'red').text('유효하지 않은 이름입니다.');
+    				isNameOk = false;
+    			} else {
+    				$('.resultName').css('color', 'red').text('');
+    				isNameOk = true;
+    			}
+    		});
+    		
+    		// 아이디 검사
     		if (!isUidOk) {
+    			alert('아이디를 확인하십시오.');
     			return false;
     		}
     		// 비밀번호 검사
     		if (!isPassOk) {
+    			alert('비밀번호를 확인하십시오.');
     			return false;
     		}
     		// 이름 검사
     		if (!isNameOk) {
+    			alert('이름을 확인하십시오.');
     			return false;
     		}
     		// 별명 검사
     		if (!isNickOk) {
+    			alert('별명을 확인하십시오.');
     			return false;
     		}
     		// 이메일 검사
     		if (!isEmailOk) {
+    			alert('이메일을 확인하십시오.');
     			return false;
     		}
     		// 휴대폰 검사
     		if (!isHpOk) {
+    			alert('전화번호를 확인하십시오.');
     			return false;
     		}
     		// 최종 전송
@@ -52,6 +101,7 @@
     		});
     	});
     </script>
+    <script src='/Jboard1/js/checkUser.js'></script>
 </head>
 <body>
     <div id="container">
@@ -90,7 +140,8 @@
                         <tr>
                             <td>이름</td>
                             <td>
-                                <input type="text" name="name" placeholder="이름 입력"/>                            
+                                <input type="text" name="name" placeholder="이름 입력"/> 
+                                <span class="resultName"></span>                           
                             </td>
                         </tr>
                         <tr>
@@ -133,7 +184,7 @@
                     </table>
     
                     <div>
-                        <a href="#" class="btnCancel">취소</a>
+                        <a href="/Jboard1/user/login.jsp" class="btnCancel">취소</a>
                         <input type="submit" class="btnSubmit" value="회원가입"/>
                     </div>    
                 </form>
