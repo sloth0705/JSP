@@ -1,3 +1,5 @@
+<%@page import="kr.co.jboard1.db.SQL"%>
+<%@page import="kr.co.jboard1.dao.UserDAO"%>
 <%@page import="com.google.gson.JsonObject"%>
 <%@page import="com.google.gson.Gson"%>
 <%@page import="java.sql.ResultSet"%>
@@ -10,23 +12,7 @@
 <%
 	request.setCharacterEncoding("UTF-8");
 	String uid = request.getParameter("uid");
-	int result = 0;
-	try {
-		Context initCtx = new InitialContext();
-		Context ctx = (Context) initCtx.lookup("java:comp/env"); // JNDI 기본 환경이름
-		DataSource ds = (DataSource) ctx.lookup("jdbc/Jboard");
-		Connection conn = ds.getConnection();
-		PreparedStatement psmt = conn.prepareStatement("SELECT COUNT(*) FROM `user` WHERE `uid` = ?");
-		psmt.setString(1, uid);
-		ResultSet rs = psmt.executeQuery();
-		if (rs.next()) {
-			result = rs.getInt(1);
-		}
-		psmt.close();
-		conn.close();
-	} catch(Exception e) {
-		e.printStackTrace();
-	}
+	int result = UserDAO.getInstance().checkUser(uid, SQL.SELECT_COUNT_UID);
 	JsonObject json = new JsonObject();
 	json.addProperty("result", result);
 	String jsonData = json.toString();
