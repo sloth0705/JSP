@@ -63,45 +63,10 @@
     				isNameOk = true;
     			}
     		});
-    		
-    		// 아이디 검사
-    		if (!isUidOk) {
-    			alert('아이디를 확인하십시오.');
-    			return false;
-    		}
-    		// 비밀번호 검사
-    		if (!isPassOk) {
-    			alert('비밀번호를 확인하십시오.');
-    			return false;
-    		}
-    		// 이름 검사
-    		if (!isNameOk) {
-    			alert('이름을 확인하십시오.');
-    			return false;
-    		}
-    		// 별명 검사
-    		if (!isNickOk) {
-    			alert('별명을 확인하십시오.');
-    			return false;
-    		}
-    		// 이메일 검사
-    		if (!isEmailOk) {
-    			alert('이메일을 확인하십시오.');
-    			return false;
-    		}
-    		// 휴대폰 검사
-    		if (!isHpOk) {
-    			alert('전화번호를 확인하십시오.');
-    			return false;
-    		}
-    		// 최종 전송
-    		$('#formUser').submit(function() {
-    			alert('!!!');
-    			return false; // 폼 전송 취소
-    		});
     	});
     </script>
     <script src='/Jboard1/js/checkUser.js'></script>
+    <script src='/Jboard1/js/validation.js'></script>
 </head>
 <body>
     <div id="container">

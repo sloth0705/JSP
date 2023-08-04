@@ -28,7 +28,7 @@
 		Context ctx = (Context) initCtx.lookup("java:comp/env"); // JNDI 기본 환경이름
 		DataSource ds = (DataSource) ctx.lookup("jdbc/Jboard");
 		Connection conn = ds.getConnection();
-		PreparedStatement psmt = conn.prepareStatement("INSERT INTO `user` VALUES(?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, now(), ?)");
+		PreparedStatement psmt = conn.prepareStatement("INSERT INTO `user` VALUES(?, SHA2(?, 256), ?, ?, ?, ?, ?, ?, ?, ?, ?, now(), ?)");
 		psmt.setString(1, uid);
 		psmt.setString(2, pass1);
 		psmt.setString(3, name);
