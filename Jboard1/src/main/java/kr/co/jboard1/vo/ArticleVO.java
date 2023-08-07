@@ -94,6 +94,10 @@ public class ArticleVO {
 	}
 
 	public String getRdate() {
+		return rdate.substring(2, 10);
+	}
+	
+	public String getFullRdate() {
 		return rdate;
 	}
 

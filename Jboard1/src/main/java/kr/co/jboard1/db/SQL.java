@@ -37,4 +37,6 @@ public class SQL {
 												+ "`writer` = ?, "
 												+ "`regip` = ?, "
 												+ "`rdate` = NOW()";
+	public static final String SELECT_ARTICLES = "SELECT * "
+												+ "FROM `article`";
 }
