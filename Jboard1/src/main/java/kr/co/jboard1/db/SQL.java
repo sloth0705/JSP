@@ -31,4 +31,10 @@ public class SQL {
 	public static final String SELECT_COUNT_EMAIL = "SELECT COUNT(*) "
 													+ "FROM `user` "
 													+ "WHERE `email` = ?";
+	public static final String INSERT_ARTICLE = "INSERT INTO `article` "
+												+ "SET `title` = ?, "
+												+ "`content` = ?, "
+												+ "`writer` = ?, "
+												+ "`regip` = ?, "
+												+ "`rdate` = NOW()";
 }
