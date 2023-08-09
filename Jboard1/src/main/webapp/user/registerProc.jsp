@@ -1,4 +1,4 @@
-<%@page import="kr.co.jboard1.vo.UserVO"%>
+<%@page import="kr.co.jboard1.dto.UserDTO"%>
 <%@page import="kr.co.jboard1.dao.UserDAO"%>
 <%@page import="java.net.InetAddress"%>
 <%@page import="java.sql.PreparedStatement"%>
@@ -8,7 +8,7 @@
 <%@page import="javax.naming.Context"%>
 <%@ page contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
 <%
-	request.setCharacterEncoding("UTF-8");
+request.setCharacterEncoding("UTF-8");
 	String uid = request.getParameter("uid");
 	String pass1 = request.getParameter("pass1");
 	String name = request.getParameter("name");
@@ -23,7 +23,7 @@
 	    InetAddress inetAddress=InetAddress.getLocalHost();
 	    regIp=inetAddress.getHostAddress();
 	}
-	UserVO vo = new UserVO();
+	UserDTO vo = new UserDTO();
 	vo.setUid(uid);
 	vo.setPass(pass1);
 	vo.setName(name);

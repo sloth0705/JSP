@@ -1,4 +1,4 @@
-<%@page import="kr.co.jboard1.vo.TermsVO"%>
+<%@page import="kr.co.jboard1.dto.TermsDTO"%>
 <%@page import="java.sql.ResultSet"%>
 <%@page import="java.sql.Statement"%>
 <%@page import="java.sql.Connection"%>
@@ -7,7 +7,7 @@
 <%@page import="javax.naming.Context"%>
 <%@ page contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
 <%
-	TermsVO terms = new TermsVO();
+TermsDTO terms = new TermsDTO();
 	try {
 		Context initCtx = new InitialContext();
 		Context ctx = (Context) initCtx.lookup("java:comp/env"); // JNDI 기본 환경이름
@@ -16,8 +16,8 @@
 		Statement stmt = conn.createStatement();
 		ResultSet rs = stmt.executeQuery("SELECT * FROM `terms`");
 		if (rs.next()) {
-			terms.setTerms(rs.getString(1));
-			terms.setPrivacy(rs.getNString(2));
+	terms.setTerms(rs.getString(1));
+	terms.setPrivacy(rs.getNString(2));
 		}
 		rs.close();
 		stmt.close();

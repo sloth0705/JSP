@@ -2,7 +2,7 @@ package kr.co.jboard1.dao;
 
 import kr.co.jboard1.db.DBHelper;
 import kr.co.jboard1.db.SQL;
-import kr.co.jboard1.vo.UserVO;
+import kr.co.jboard1.dto.UserDTO;
 
 public class UserDAO extends DBHelper {
 	private static UserDAO instance = new UserDAO();
@@ -15,7 +15,7 @@ public class UserDAO extends DBHelper {
 
 	}
 
-	public void insertUser(UserVO vo) {
+	public void insertUser(UserDTO vo) {
 		try {
 			psmt = getConnection().prepareStatement(SQL.INSERT_USER);
 			psmt.setString(1, vo.getUid());
@@ -38,15 +38,15 @@ public class UserDAO extends DBHelper {
 		}
 	};
 
-	public UserVO selectUser(String uid, String pass) {
-		UserVO user = null;
+	public UserDTO selectUser(String uid, String pass) {
+		UserDTO user = null;
 		try {
 			psmt = getConnection().prepareStatement(SQL.SELECT_USER);
 			psmt.setString(1, uid);
 			psmt.setString(2, pass);
 			rs = psmt.executeQuery();
 			if (rs.next()) {
-				user = new UserVO();
+				user = new UserDTO();
 				user.setUid(rs.getString(1));
 				user.setPass(rs.getString(2));
 				user.setName(rs.getString(3));
