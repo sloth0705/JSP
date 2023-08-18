@@ -48,20 +48,28 @@
 				// 수정완료 클릭
 				// 수정 데이터 전송
 				if (!confirm('정말로 수정하시겠습니까?')) {
+					// 수정모드 해제 
+					$(this).parent().prev().removeClass('modi');
+					$(this).parent().prev().attr('readonly', true);
+					$(this).text('수정');
+					$(this).prev().hide();
+					const prevComment = $(this).parent().parent().children()[4].value;
+					$(this).parent().parent().children()[6].value = prevComment;
 					return false;
 				}
 				$(this).closest('form').submit();
-				
-				// 수정모드 해제 
-				$(this).parent().prev().removeClass('modi');
-				$(this).parent().prev().attr('readonly', true);
-				$(this).text('수정');
-				$(this).prev().hide();
 			}
 		});
 		
 		$('.can').click(function() {
-			e.preventDefault();
+			const mod = $(this).parent().children()[2];
+			mod.parentElement.previousElementSibling.classList.remove('modi')
+			mod.parentElement.previousElementSibling.setAttribute('readonly', true)
+			mod.innerText = '수정';
+			$(this).hide();
+			const prevComment = $(this).parent().parent().children()[4].value;
+			$(this).parent().parent().children()[6].value = prevComment;
+			return false;
 		});
 		
 		$('.del').click(function() {
@@ -128,10 +136,12 @@
 				     <h3>댓글목록</h3>
 				     <% for(ArticleDTO comment : comments) { %>
 			         <article class="comment">
-				         <form action="/Farmstory1/proc/commentUpdate.jsp" method="post">
+				         <form action="/Farmstory1/board/proc/commentUpdate.jsp" method="post">
 				         	<input type="hidden" name="no" value="<%=comment.getNo()%>">
 				         	<input type="hidden" name="parent" value="<%=no%>">
-				         	<input type="hidden" name="prevComment" value="<%=comment.getContent() %>"/>
+				         	<input type="hidden" name="group" value="<%=group %>"/>
+				         	<input type="hidden" name="cate" value="<%=cate %>"/>
+				         	<input type="hidden" name="prevComment" value="<%=comment.getContent()%>">
 							<span>
 							    <span><%=comment.getNick() %></span>
 								<span><%=comment.getRdate() %></span>

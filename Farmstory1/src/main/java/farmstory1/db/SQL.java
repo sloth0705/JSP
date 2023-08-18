@@ -79,4 +79,7 @@ public class SQL {
 	public static final String DELETE_ARTICLE_FOR_COMMENT = "UPDATE `Article` "
 															+ "SET `comment` = `comment` - 1 "
 															+ "WHERE `no` = ?";
+	public static final String UPDATE_COMMENT = "UPDATE `Article` "
+												+ "SET `content` = ? "
+												+ "WHERE `no` = ?";
 }
