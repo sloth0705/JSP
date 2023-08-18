@@ -5,6 +5,13 @@
 	String group = request.getParameter("group");
 	String cate = request.getParameter("cate");
 	
+	// 로그인 여부 확인
+	if (sessUser == null) {
+		String uri = "board/write.jsp?";
+		response.sendRedirect("/Farmstory1/user/login.jsp?success=101&uri=" + uri + "&group=" + group + "&cate=" + cate);
+		return;
+	}
+	
 	pageContext.include("./_aside" + group + ".jsp");
 %>
 			<section class="write">
