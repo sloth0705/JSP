@@ -21,6 +21,15 @@
 	List<ArticleDTO> comments = dao.selectComments(no);
 	pageContext.include("./_aside" + group + ".jsp");
 %>
+<script type="text/javascript">
+	$(function() {
+		$('.btnDelete').click(function() {
+			if (!confirm('정말로 삭제 하시겠습니까?')) {
+				return false;
+			}
+		})	
+	});
+</script>
 			<section class="view">
 			    <h3>글보기</h3>
 			    <table>
@@ -43,8 +52,8 @@
 			        </tr>
 			    </table>
 			    <div>
-			        <a href="#" class="btnDelete">삭제</a>
-			        <a href="/Farmstory1/board/modify.jsp?group=<%=group %>&cate=<%=cate %>" class="btnModify">수정</a>
+			        <a href="/Farmstory1/board/proc/deleteProc.jsp?no=<%=no %>&group=<%=group %>&cate=<%=cate %>" class="btnDelete">삭제</a>
+			        <a href="/Farmstory1/board/modify.jsp?no=<%=no %>&group=<%=group %>&cate=<%=cate %>" class="btnModify">수정</a>
 			        <a href="#" class="btnList">목록</a>
 			    </div>  
 			    

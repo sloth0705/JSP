@@ -1,4 +1,16 @@
+<%@page import="farmstory1.dao.ArticleDAO"%>
+<%@page import="farmstory1.dto.ArticleDTO"%>
+<%@page import="java.util.List"%>
 <%@ page contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
+<%
+	ArticleDAO dao = new ArticleDAO();
+	List<ArticleDTO> storys = dao.selectArticlesLimit(5, "story");
+	List<ArticleDTO> grows = dao.selectArticlesLimit(5, "grow");
+	List<ArticleDTO> schools = dao.selectArticlesLimit(5, "school");
+	List<ArticleDTO> notices = dao.selectArticlesLimit(3, "notice");
+	List<ArticleDTO> qnas = dao.selectArticlesLimit(3, "qna");
+	List<ArticleDTO> faqs = dao.selectArticlesLimit(3, "faq");
+%>
 <%@ include file="./_header.jsp" %>
 <main>
     <div class="slider">
@@ -22,94 +34,40 @@
         <div>
             <a href="#"><img src="./images/main_latest1_tit.png" alt="텃밭 가꾸기"/></a>
             <img src="./images/main_latest1_img.jpg" alt="이미지"/>
-            <table border="0">
+            <table>
+            	<%for(ArticleDTO grow : grows) { %>
                 <tr>
                     <td>></td>
-                    <td><a href="#">토마토! 건강하게 길러서 안심하고 먹자</a></td>
-                    <td>20-12-22</td>
+                    <td><a href="/Farmstory1/board/view.jsp?no=<%=grow.getNo()%>&group=Croptalk&cate=grow"><%=grow.getTitle() %></a></td>
+                    <td><%=grow.getRdate() %></td>
                 </tr>
-                <tr>
-                    <td>></td>
-                    <td><a href="#">토마토! 건강하게 길러서 안심하고 먹자</a></td>
-                    <td>20-12-22</td>
-                </tr>
-                <tr>
-                    <td>></td>
-                    <td><a href="#">토마토! 건강하게 길러서 안심하고 먹자</a></td>
-                    <td>20-12-22</td>
-                </tr>
-                <tr>
-                    <td>></td>
-                    <td><a href="#">토마토! 건강하게 길러서 안심하고 먹자</a></td>
-                    <td>20-12-22</td>
-                </tr>
-                <tr>
-                    <td>></td>
-                    <td><a href="#">토마토! 건강하게 길러서 안심하고 먹자</a></td>
-                    <td>20-12-22</td>
-                </tr>
+                <%} %>
             </table>
         </div>
         <div>
             <a href="#"><img src="./images/main_latest2_tit.png" alt="귀농학교"/></a>
             <img src="./images/main_latest2_img.jpg" alt="이미지"/>
-            <table border="0">
+            <table>
+               <%for(ArticleDTO school : schools) { %>
                 <tr>
                     <td>></td>
-                    <td><a href="#">토마토! 건강하게 길러서 안심하고 먹자</a></td>
-                    <td>20-12-22</td>
+                    <td><a href="/Farmstory1/board/view.jsp?no=<%=school.getNo()%>&group=Croptalk&cate=school"><%=school.getTitle() %></a></td>
+                    <td><%=school.getRdate() %></td>
                 </tr>
-                <tr>
-                    <td>></td>
-                    <td><a href="#">토마토! 건강하게 길러서 안심하고 먹자</a></td>
-                    <td>20-12-22</td>
-                </tr>
-                <tr>
-                    <td>></td>
-                    <td><a href="#">토마토! 건강하게 길러서 안심하고 먹자</a></td>
-                    <td>20-12-22</td>
-                </tr>
-                <tr>
-                    <td>></td>
-                    <td><a href="#">토마토! 건강하게 길러서 안심하고 먹자</a></td>
-                    <td>20-12-22</td>
-                </tr>
-                <tr>
-                    <td>></td>
-                    <td><a href="#">토마토! 건강하게 길러서 안심하고 먹자</a></td>
-                    <td>20-12-22</td>
-                </tr>
+                <%} %>
             </table>
         </div>
         <div>
             <a href="#"><img src="./images/main_latest3_tit.png" alt="농작물 이야기"/></a>
             <img src="./images/main_latest3_img.jpg" alt="이미지"/>
-            <table border="0">
+            <table>
+                <%for(ArticleDTO story : storys) { %>
                 <tr>
                     <td>></td>
-                    <td><a href="#">토마토! 건강하게 길러서 안심하고 먹자</a></td>
-                    <td>20-12-22</td>
+                    <td><a href="/Farmstory1/board/view.jsp?no=<%=story.getNo()%>&group=Croptalk&cate=story"><%=story.getTitle() %></a></td>
+                    <td><%=story.getRdate() %></td>
                 </tr>
-                <tr>
-                    <td>></td>
-                    <td><a href="#">토마토! 건강하게 길러서 안심하고 먹자</a></td>
-                    <td>20-12-22</td>
-                </tr>
-                <tr>
-                    <td>></td>
-                    <td><a href="#">토마토! 건강하게 길러서 안심하고 먹자</a></td>
-                    <td>20-12-22</td>
-                </tr>
-                <tr>
-                    <td>></td>
-                    <td><a href="#">토마토! 건강하게 길러서 안심하고 먹자</a></td>
-                    <td>20-12-22</td>
-                </tr>
-                <tr>
-                    <td>></td>
-                    <td><a href="#">토마토! 건강하게 길러서 안심하고 먹자</a></td>
-                    <td>20-12-22</td>
-                </tr>
+                <%} %>
             </table>
         </div>
     </div>
@@ -150,23 +108,23 @@
                 </ul>
                 <div id="tabs-1">
                     <ul class="txt">
-                        <li><a href="#">· 홈페이지 오픈 기념 이벤트를 진행합니다.</a></li>
-                        <li><a href="#">· 홈페이지 오픈 기념 이벤트를 진행합니다.</a></li>
-                        <li><a href="#">· 홈페이지 오픈 기념 이벤트를 진행합니다.</a></li>
+                    	<%for(ArticleDTO notice : notices) { %>
+                        <li><a href="/Farmstory1/board/view.jsp?no=<%=notice.getNo()%>&group=Community&cate=notice">· <%=notice.getTitle() %></a></li>
+                        <%} %>
                     </ul>
                 </div>
                 <div id="tabs-2">
                     <ul class="txt">
-                        <li><a href="#">· 홈페이지 이용 관련 불편사항을 들려주세요.</a></li>
-                        <li><a href="#">· 홈페이지 이용 관련 불편사항을 들려주세요.</a></li>
-                        <li><a href="#">· 홈페이지 이용 관련 불편사항을 들려주세요.</a></li>
+                        <%for(ArticleDTO qna : qnas) { %>
+                        <li><a href="/Farmstory1/board/view.jsp?no=<%=qna.getNo()%>&group=Community&cate=qna">· <%=qna.getTitle() %></a></li>
+                        <%} %>
                     </ul>
                 </div>
                 <div id="tabs-3">
                     <ul class="txt">
-                        <li><a href="#">· 홈페이지를 오픈하였습니다.</a></li>
-                        <li><a href="#">· 홈페이지를 오픈하였습니다.</a></li>
-                        <li><a href="#">· 홈페이지를 오픈하였습니다.</a></li>
+                        <%for(ArticleDTO faq : faqs) { %>
+                        <li><a href="/Farmstory1/board/view.jsp?no=<%=faq.getNo()%>&group=Community&cate=faq">· <%=faq.getTitle() %></a></li>
+                        <%} %>
                     </ul>
                 </div>
             </div>

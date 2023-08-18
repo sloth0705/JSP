@@ -54,6 +54,36 @@ public class ArticleDAO extends DBHelper {
 		return articles;
 	}
 	
+	public List<ArticleDTO> selectArticlesLimit(int limit, String cate) {
+		List<ArticleDTO> articles = new ArrayList<>();
+		try {
+			psmt = getConnection().prepareStatement(SQL.SELECT_ARTICLES_LIMIT);
+			psmt.setString(1, cate);
+			psmt.setInt(2, limit);
+			rs = psmt.executeQuery();
+			while (rs.next()) {
+				ArticleDTO vo = new ArticleDTO();
+				vo.setNo(rs.getInt(1));
+				vo.setParent(rs.getInt(2));
+				vo.setComment(rs.getInt(3));
+				vo.setCate(rs.getString(4));
+				vo.setTitle(rs.getString(5));
+				vo.setContent(rs.getString(6));
+				vo.setFile(rs.getInt(7));
+				vo.setHit(rs.getInt(8));
+				vo.setWriter(rs.getString(9));
+				vo.setRegip(rs.getString(10));
+				vo.setRdate(rs.getString(11));
+				vo.setNick(rs.getString(12));
+				articles.add(vo);
+			}
+			close();
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+		return articles;
+	}
+	
 	public ArticleDTO selectArticle(String no) {
 		ArticleDTO dto = null;
 		try {
@@ -80,6 +110,19 @@ public class ArticleDAO extends DBHelper {
 			e.printStackTrace();
 		}
 		return dto;
+	}
+	
+	public void updateArticle(String no, String title, String content) {
+		try {
+			psmt = getConnection().prepareStatement(SQL.UPDATE_ARTICLE);
+			psmt.setString(1, title);
+			psmt.setString(2, content);
+			psmt.setString(3, no);
+			psmt.executeUpdate();
+			close();
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
 	}
 	
 	public int selectCountTotal(String cate) {
@@ -125,6 +168,18 @@ public class ArticleDAO extends DBHelper {
 			e.printStackTrace();
 		}
 		return comments;
+	}
+	
+	public void deleteArticle(String no) {
+		try {
+			psmt = getConnection().prepareStatement(SQL.DELETE_ARTICLE);
+			psmt.setString(1, no);
+			psmt.setString(2, no);
+			psmt.executeUpdate();
+			close();
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
 	}
 	
 	public void insertComment(ArticleDTO dto) {

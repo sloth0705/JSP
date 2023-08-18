@@ -42,6 +42,14 @@ public class SQL {
 												+ "`cate` = ? "
 												+ "ORDER BY a.`no` DESC "
 												+ "LIMIT ?, 10";
+	public static final String SELECT_ARTICLES_LIMIT = "SELECT a.*, "
+												+ "b.nick "
+												+ "FROM `Article` AS a "
+												+ "JOIN `User` AS b on a.`writer` = b.`uid` "
+												+ "WHERE `parent` = 0 AND "
+												+ "`cate` = ? "
+												+ "ORDER BY a.`rdate` DESC "
+												+ "LIMIT ?";
 	public static final String SELECT_ARTICLE = "SELECT a.*, "
 												+ "b.nick "
 												+ "FROM `Article` AS a "
@@ -55,5 +63,10 @@ public class SQL {
 	public static final String SELECT_COUNT_TOTAL = "SELECT COUNT(*) "
 													+ "FROM `Article` "
 													+ "WHERE `parent` = 0 AND "
-													+ "`cate` = ?";	
+													+ "`cate` = ?";
+	public static final String UPDATE_ARTICLE = "UPDATE `Article` "
+												+ "SET `title` = ?, "
+												+ "`content` = ? "
+												+ "WHERE `no` = ?";
+	public static final String DELETE_ARTICLE = "DELETE FROM `Article` WHERE `no` = ? OR `parent` = ?";
 }
