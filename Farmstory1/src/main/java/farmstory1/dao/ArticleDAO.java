@@ -190,6 +190,42 @@ public class ArticleDAO extends DBHelper {
 			psmt.setString(3, dto.getWriter());
 			psmt.setString(4, dto.getRegip());
 			psmt.executeUpdate();
+			updateArticleForComment(dto.getParent());
+			close();
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+	}
+	
+	public void updateArticleForComment(int no) {
+		try {
+			psmt = getConnection().prepareStatement(SQL.UPDATE_ARTICLE_FOR_COMMENT);
+			psmt.setInt(1, no);
+			psmt.executeUpdate();
+
+			close();
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+	}
+	
+	public void deleteComment(String no, String parent) {
+		try {
+			psmt = getConnection().prepareStatement(SQL.DELETE_COMMENT);
+			psmt.setString(1, no);
+			psmt.executeUpdate();
+			deleteArticleForComment(parent);
+			close();
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+	}
+	
+	public void deleteArticleForComment(String no) {
+		try {
+			psmt = getConnection().prepareStatement(SQL.DELETE_ARTICLE_FOR_COMMENT);
+			psmt.setString(1, no);
+			psmt.executeUpdate();
 			close();
 		} catch (Exception e) {
 			e.printStackTrace();

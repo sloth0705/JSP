@@ -68,5 +68,15 @@ public class SQL {
 												+ "SET `title` = ?, "
 												+ "`content` = ? "
 												+ "WHERE `no` = ?";
-	public static final String DELETE_ARTICLE = "DELETE FROM `Article` WHERE `no` = ? OR `parent` = ?";
+	public static final String UPDATE_ARTICLE_FOR_COMMENT = "UPDATE `Article` "
+															+ "SET `comment` = `comment` + 1 "
+															+ "WHERE `no` = ?";
+	public static final String DELETE_ARTICLE = "DELETE FROM `Article` "
+												+ "WHERE `no` = ? "
+												+ "OR `parent` = ?";
+	public static final String DELETE_COMMENT = "DELETE FROM `Article` "
+												+ "WHERE `no` = ?";
+	public static final String DELETE_ARTICLE_FOR_COMMENT = "UPDATE `Article` "
+															+ "SET `comment` = `comment` - 1 "
+															+ "WHERE `no` = ?";
 }
