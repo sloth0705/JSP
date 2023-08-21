@@ -82,4 +82,16 @@ public class SQL {
 	public static final String UPDATE_COMMENT = "UPDATE `Article` "
 												+ "SET `content` = ? "
 												+ "WHERE `no` = ?";
+	public static final String INSERT_PRODUCT = "INSERT INTO `Product` SET "
+												+ "`type` = ?, "
+												+ "`pName` = ?, "
+												+ "`price` = ?, "
+												+ "`delivery` = ?, "
+												+ "`stock` = ?, "
+												+ "`thumb1` = ?, "
+												+ "`thumb2` = ?, "
+												+ "`thumb3` = ?, "
+												+ "`seller` = ?, "
+												+ "`etc` = ?, "
+												+ "`rdate` = NOW()";
 }
