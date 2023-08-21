@@ -2,7 +2,6 @@ package farmstory1.dao;
 
 import java.util.ArrayList;
 import java.util.List;
-
 import farmstory1.db.DBHelper;
 import farmstory1.db.SQL;
 import farmstory1.dto.ArticleDTO;
@@ -17,13 +16,12 @@ public class ArticleDAO extends DBHelper {
 			psmt.setString(4, dto.getWriter());
 			psmt.setString(5, dto.getRegip());
 			psmt.executeUpdate();
-
 			close();
 		} catch (Exception e) {
 			e.printStackTrace();
 		}
 	};
-	
+
 	public List<ArticleDTO> selectArticles(int start, String cate) {
 		List<ArticleDTO> articles = new ArrayList<>();
 		try {
@@ -53,7 +51,7 @@ public class ArticleDAO extends DBHelper {
 		}
 		return articles;
 	}
-	
+
 	public List<ArticleDTO> selectArticlesLimit(int limit, String cate) {
 		List<ArticleDTO> articles = new ArrayList<>();
 		try {
@@ -83,7 +81,7 @@ public class ArticleDAO extends DBHelper {
 		}
 		return articles;
 	}
-	
+
 	public ArticleDTO selectArticle(String no) {
 		ArticleDTO dto = null;
 		try {
@@ -111,7 +109,7 @@ public class ArticleDAO extends DBHelper {
 		}
 		return dto;
 	}
-	
+
 	public void updateArticle(String no, String title, String content) {
 		try {
 			psmt = getConnection().prepareStatement(SQL.UPDATE_ARTICLE);
@@ -124,7 +122,7 @@ public class ArticleDAO extends DBHelper {
 			e.printStackTrace();
 		}
 	}
-	
+
 	public int selectCountTotal(String cate) {
 		int result = 0;
 		try {
@@ -140,7 +138,7 @@ public class ArticleDAO extends DBHelper {
 		}
 		return result;
 	}
-	
+
 	public List<ArticleDTO> selectComments(String parent) {
 		List<ArticleDTO> comments = new ArrayList<>();
 		try {
@@ -169,7 +167,7 @@ public class ArticleDAO extends DBHelper {
 		}
 		return comments;
 	}
-	
+
 	public void deleteArticle(String no) {
 		try {
 			psmt = getConnection().prepareStatement(SQL.DELETE_ARTICLE);
@@ -181,7 +179,7 @@ public class ArticleDAO extends DBHelper {
 			e.printStackTrace();
 		}
 	}
-	
+
 	public void insertComment(ArticleDTO dto) {
 		try {
 			psmt = getConnection().prepareStatement(SQL.INSERT_COMMENT);
@@ -196,7 +194,7 @@ public class ArticleDAO extends DBHelper {
 			e.printStackTrace();
 		}
 	}
-	
+
 	public void updateArticleForComment(int no) {
 		try {
 			psmt = getConnection().prepareStatement(SQL.UPDATE_ARTICLE_FOR_COMMENT);
@@ -208,7 +206,7 @@ public class ArticleDAO extends DBHelper {
 			e.printStackTrace();
 		}
 	}
-	
+
 	public void updateComment(String no, String content) {
 		try {
 			psmt = getConnection().prepareStatement(SQL.UPDATE_COMMENT);
@@ -220,7 +218,7 @@ public class ArticleDAO extends DBHelper {
 			e.printStackTrace();
 		}
 	}
-	
+
 	public void deleteComment(String no, String parent) {
 		try {
 			psmt = getConnection().prepareStatement(SQL.DELETE_COMMENT);
@@ -232,7 +230,7 @@ public class ArticleDAO extends DBHelper {
 			e.printStackTrace();
 		}
 	}
-	
+
 	public void deleteArticleForComment(String no) {
 		try {
 			psmt = getConnection().prepareStatement(SQL.DELETE_ARTICLE_FOR_COMMENT);
