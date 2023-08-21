@@ -14,7 +14,7 @@ TermsDTO terms = new TermsDTO();
 		DataSource ds = (DataSource) ctx.lookup("jdbc/Jboard");
 		Connection conn = ds.getConnection();
 		Statement stmt = conn.createStatement();
-		ResultSet rs = stmt.executeQuery("SELECT * FROM `terms`");
+		ResultSet rs = stmt.executeQuery("SELECT * FROM `Terms`");
 		if (rs.next()) {
 	terms.setTerms(rs.getString(1));
 	terms.setPrivacy(rs.getNString(2));

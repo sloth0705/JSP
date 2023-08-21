@@ -160,6 +160,19 @@ public class ArticleDAO extends DBHelper {
 		}
 	}
 	
+	public void updateComment(String content, String no) {
+		try {
+			psmt = getConnection().prepareStatement(SQL.UPDATE_COMMENT);
+			psmt.setString(1, content);
+			psmt.setString(2, no);
+			psmt.executeUpdate();
+
+			close();
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+	}
+	
 	public void deleteComment(String no) {
 		try {
 			psmt = getConnection().prepareStatement(SQL.DELETE_COMMENT);
