@@ -94,4 +94,22 @@ public class SQL {
 												+ "`seller` = ?, "
 												+ "`etc` = ?, "
 												+ "`rdate` = NOW()";
+	public static final String SELECT_PRODUCTS_ALL = "SELECT * "
+													+ "FROM `Product` "
+													+ "WHERE `stock` > 0 "
+													+ "ORDER BY `rdate` DESC "
+													+ "LIMIT ?, 10";
+	public static final String SELECT_PRODUCTS_TYPE = "SELECT * "
+													+ "FROM `Product` "
+													+ "WHERE `stock` > 0 AND "
+													+ "`type` = ? "
+													+ "ORDER BY `rdate` DESC "
+													+ "LIMIT ?, 10";
+	public static final String SELECT_COUNT_PRODUCTS_ALL = "SELECT COUNT(*) "
+															+ "FROM `Product` "
+															+ "WHERE `stock` > 0";
+	public static final String SELECT_COUNT_PRODUCTS_TYPE = "SELECT COUNT(*) "
+															+ "FROM `Product` "
+															+ "WHERE `stock` > 0 AND "
+															+ "`type` = ?";
 }

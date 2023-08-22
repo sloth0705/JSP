@@ -23,7 +23,7 @@ public class ProductDAO extends DBHelper {
 			psmt.setString(10, dto.getEtc());
 			psmt.executeUpdate();
 			close();
-		} catch(Exception e) {
+		} catch (Exception e) {
 			e.printStackTrace();
 		}
 	}
@@ -33,9 +33,39 @@ public class ProductDAO extends DBHelper {
 		return dto;
 	}
 
-	public List<ProductDTO> selectProducts() {
+	public List<ProductDTO> selectProducts(int start, String type) {
 		List<ProductDTO> products = new ArrayList<>();
-
+		try {
+			if (type.equals("0")) {
+				psmt = getConnection().prepareStatement(SQL.SELECT_PRODUCTS_ALL);
+				psmt.setInt(1, start);
+			} else {
+				psmt = getConnection().prepareStatement(SQL.SELECT_PRODUCTS_TYPE);
+				psmt.setString(1, type);
+				psmt.setInt(2, start);
+			}
+			rs = psmt.executeQuery();
+			while (rs.next()) {
+				ProductDTO dto = new ProductDTO();
+				dto.setpNo(rs.getInt("pNo"));
+				dto.setType(rs.getInt("type"));
+				dto.setpName(rs.getString("pName"));
+				dto.setPrice(rs.getInt("price"));
+				dto.setDelivery(rs.getInt("delivery"));
+				dto.setStock(rs.getInt("stock"));
+				dto.setSold(rs.getInt("sold"));
+				dto.setThumb1(rs.getString("thumb1"));
+				dto.setThumb2(rs.getString("thumb2"));
+				dto.setThumb3(rs.getString("thumb3"));
+				dto.setSeller(rs.getString("seller"));
+				dto.setEtc(rs.getString("etc"));
+				dto.setRdate(rs.getString("rdate"));
+				products.add(dto);
+			}
+			close();
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
 		return products;
 	}
 
@@ -45,5 +75,25 @@ public class ProductDAO extends DBHelper {
 
 	public void deleteProduct(int pNo) {
 
+	}
+	
+	public int selectCountProductsTotal(String type) {
+		int total = 0;
+		try {
+			if (type.equals("0")) {
+				psmt = getConnection().prepareStatement(SQL.SELECT_COUNT_PRODUCTS_ALL);
+			} else {
+				psmt = getConnection().prepareStatement(SQL.SELECT_COUNT_PRODUCTS_TYPE);
+				psmt.setString(1, type);
+			}
+			rs = psmt.executeQuery();
+			if (rs.next()) {
+				total = rs.getInt(1);
+			}
+			close();
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+		return total;
 	}
 }
