@@ -112,4 +112,21 @@ public class SQL {
 															+ "FROM `Product` "
 															+ "WHERE `stock` > 0 AND "
 															+ "`type` = ?";
+	public static final String SELECT_PRODUCT = "SELECT * "
+												+ "FROM `Product` "
+												+ "WHERE `pNo` = ?";
+	public static final String INSERT_ORDER = "INSERT INTO `Order` "
+											+ "SET `orderProduct` = ?, "
+											+ "`orderCount` = ?, "
+											+ "`orderDelivery` = ?, "
+											+ "`orderPrice` = ?, "
+											+ "`orderTotal` = ?, "
+											+ "`receiver` = ?, "
+											+ "`hp` = ?, "
+											+ "`zip` = ?, "
+											+ "`addr1` = ?, "
+											+ "`addr2` = ?, "
+											+ "`orderEtc` = ?, "
+											+ "`orderUser` = ?, "
+											+ "`orderDate` = NOW()";
 }

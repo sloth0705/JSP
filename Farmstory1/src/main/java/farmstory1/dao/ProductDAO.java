@@ -28,8 +28,32 @@ public class ProductDAO extends DBHelper {
 		}
 	}
 
-	public ProductDTO selectProduct(int pNo) {
+	public ProductDTO selectProduct(String pNo) {
 		ProductDTO dto = null;
+		try {
+			psmt = getConnection().prepareStatement(SQL.SELECT_PRODUCT);
+			psmt.setString(1, pNo);
+			rs = psmt.executeQuery();
+			if (rs.next()) {
+				dto = new ProductDTO();
+				dto.setpNo(rs.getInt("pNo"));
+				dto.setType(rs.getInt("type"));
+				dto.setpName(rs.getString("pName"));
+				dto.setPrice(rs.getInt("price"));
+				dto.setDelivery(rs.getInt("delivery"));
+				dto.setStock(rs.getInt("stock"));
+				dto.setSold(rs.getInt("sold"));
+				dto.setThumb1(rs.getString("thumb1"));
+				dto.setThumb2(rs.getString("thumb2"));
+				dto.setThumb3(rs.getString("thumb3"));
+				dto.setSeller(rs.getString("seller"));
+				dto.setEtc(rs.getString("etc"));
+				dto.setRdate(rs.getString("rdate"));
+			}
+			close();
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
 		return dto;
 	}
 

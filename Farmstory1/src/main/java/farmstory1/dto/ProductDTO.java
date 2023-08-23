@@ -80,6 +80,12 @@ public class ProductDTO {
 	public int getDelivery() {
 		return delivery;
 	}
+	
+
+	public String getDeliveryWithComma() {
+		DecimalFormat df = new DecimalFormat("###,###");
+		return df.format(delivery);
+	}
 
 	public void setDelivery(int delivery) {
 		this.delivery = delivery;
@@ -166,6 +172,10 @@ public class ProductDTO {
 	}
 
 	public String getRdate() {
+		return rdate.substring(2, 10);
+	}
+
+	public String getFullRdate() {
 		return rdate;
 	}
 
