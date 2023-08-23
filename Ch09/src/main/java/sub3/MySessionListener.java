@@ -1,22 +1,22 @@
 package sub3;
 
 import javax.servlet.annotation.WebListener;
-import javax.servlet.http.HttpSessionEvent;
-import javax.servlet.http.HttpSessionListener;
+import javax.servlet.http.HttpSessionAttributeListener;
+import javax.servlet.http.HttpSessionBindingEvent;
 
 @WebListener
-public class MySessionListener implements HttpSessionListener{
+public class MySessionListener implements HttpSessionAttributeListener{
 	public MySessionListener() {
 		System.out.println("MySessionListener()...");
 	}
 	
 	@Override
-	public void sessionCreated(HttpSessionEvent se) {
-		System.out.println("sessionCreated()...");
+	public void attributeAdded(HttpSessionBindingEvent event) {
+		System.out.println("attributeAdded()...");
 	}
 	
 	@Override
-	public void sessionDestroyed(HttpSessionEvent se) {
-		System.out.println("sessionDestroyed()...");
+	public void attributeRemoved(HttpSessionBindingEvent event) {
+		System.out.println("attributeRemoved()...");
 	}
 }
