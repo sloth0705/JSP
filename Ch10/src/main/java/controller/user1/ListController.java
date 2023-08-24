@@ -1,6 +1,7 @@
-package controller;
+package controller.user1;
 
 import java.io.IOException;
+import java.util.List;
 
 import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
@@ -9,10 +10,15 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
-@WebServlet("/greeting.do")
-public class GreetingController extends HttpServlet{
-	private static final long serialVersionUID = 4865816741031685276L;
+import dto.User1DTO;
+import service.User1Service;
 
+@WebServlet("/user1/list.do")
+public class ListController extends HttpServlet{
+	private static final long serialVersionUID = -654976269535839549L;
+
+	private User1Service service = new User1Service();
+	
 	@Override
 	public void init() throws ServletException {
 
@@ -20,7 +26,10 @@ public class GreetingController extends HttpServlet{
 	
 	@Override
 	protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
-		RequestDispatcher dispatcher = req.getRequestDispatcher("/greeting.jsp");
+		List<User1DTO> users = service.selectUser1s();
+		// View에서 users 참조하기 위해 request Scope 저장
+		req.setAttribute("users", users);
+		RequestDispatcher dispatcher =  req.getRequestDispatcher("/user1/list.jsp");
 		dispatcher.forward(req, resp);
 	}
 	
