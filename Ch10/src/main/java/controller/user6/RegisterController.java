@@ -1,4 +1,4 @@
-package controller.user4;
+package controller.user6;
 
 import java.io.IOException;
 
@@ -9,15 +9,15 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
-import dto.User5DTO;
-import service.User5Service;
+import dto.User6DTO;
+import service.User6Service;
 
-@WebServlet("/user5/register.do")
+@WebServlet("/user6/register.do")
 public class RegisterController extends HttpServlet {
 	private static final long serialVersionUID = 4851640377167597004L;
 
-	private User5Service service = new User5Service();
-
+	private User6Service service = new User6Service();
+	
 	@Override
 	public void init() throws ServletException {
 
@@ -25,7 +25,7 @@ public class RegisterController extends HttpServlet {
 
 	@Override
 	protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
-		RequestDispatcher dispatcher = req.getRequestDispatcher("/user5/register.jsp");
+		RequestDispatcher dispatcher = req.getRequestDispatcher("/user6/register.jsp");
 		dispatcher.forward(req, resp);
 	}
 
@@ -33,23 +33,17 @@ public class RegisterController extends HttpServlet {
 	protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
 		String uid = req.getParameter("uid");
 		String name = req.getParameter("name");
-		String birth = req.getParameter("birth");
-		String gender = req.getParameter("gender");
-		String age = req.getParameter("age");
-		String addr = req.getParameter("addr");
 		String hp = req.getParameter("hp");
+		String age = req.getParameter("age");
 
-		User5DTO dto = new User5DTO();
+		User6DTO dto = new User6DTO();
 		dto.setUid(uid);
 		dto.setName(name);
-		dto.setBirth(birth);
-		dto.setGender(gender);
-		dto.setAge(age);
-		dto.setAddr(addr);
 		dto.setHp(hp);
+		dto.setAge(age);
 
-		service.insertUser5(dto);
+		service.insertUser6(dto);
 
-		resp.sendRedirect("/Ch10/user5/list.do");
+		resp.sendRedirect("/Ch10/user6/list.do");
 	}
 }

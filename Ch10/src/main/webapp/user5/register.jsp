@@ -6,22 +6,14 @@
 		<title>user::register</title>
 	</head>
 	<body>
-		<h3>User5 등록</h3>
+		<h3>User4 등록</h3>
 		<a href="/Ch10">메인</a>
-		<a href="/Ch10/user5/list.do">User5 목록</a>
-		<form action="/Ch10/user5/register.do" method="post">
+		<a href="/Ch10/user4/list.do">User4 목록</a>
+		<form action="/Ch10/user4/register.do" method="post">
 			<table border="1">
-				<tr>
-					<td>아이디</td>
-					<td><input type="text" name="uid"></td>
-				</tr>
 				<tr>
 					<td>이름</td>
 					<td><input type="text" name="name"></td>
-				</tr>
-				<tr>
-					<td>생일</td>
-					<td><input type="date" name="birth"></td>
 				</tr>
 				<tr>
 					<td>성별</td>
@@ -37,10 +29,6 @@
 				<tr>
 					<td>주소</td>
 					<td><input type="text" name="addr"></td>
-				</tr>
-				<tr>
-					<td>휴대폰</td>
-					<td><input type="text" name="hp"></td>
 				</tr>
 				<tr>
 					<td colspan="2" align="right"><input type="submit" value="등록"></td>

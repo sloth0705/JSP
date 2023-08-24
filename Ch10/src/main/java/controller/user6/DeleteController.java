@@ -1,4 +1,4 @@
-package controller.user4;
+package controller.user6;
 
 import java.io.IOException;
 
@@ -8,13 +8,13 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
-import service.User5Service;
+import service.User6Service;
 
-@WebServlet("/user5/delete.do")
+@WebServlet("/user6/delete.do")
 public class DeleteController extends HttpServlet {
-	private static final long serialVersionUID = -2583553996529441182L;
+	private static final long serialVersionUID = 419533501888265373L;
 
-	private User5Service service = new User5Service();
+	private User6Service service = new User6Service();
 
 	@Override
 	public void init() throws ServletException {
@@ -24,8 +24,8 @@ public class DeleteController extends HttpServlet {
 	@Override
 	protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
 		String uid = req.getParameter("uid");
-		service.deleteUser5(uid);
-		resp.sendRedirect("/Ch10/user5/list.do");
+		service.deleteUser6(uid);
+		resp.sendRedirect("/Ch10/user6/list.do");
 	}
 
 	@Override
