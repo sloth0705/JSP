@@ -129,4 +129,17 @@ public class SQL {
 											+ "`orderEtc` = ?, "
 											+ "`orderUser` = ?, "
 											+ "`orderDate` = NOW()";
+	public static final String SELECT_ORDERS = "SELECT a.*, "
+												+ "b.`name`, "
+												+ "c.`thumb1`, "
+												+ "c.`pName` "
+												+ "FROM `Order` AS a "
+												+ "JOIN `User` AS b "
+												+ "ON a.`orderUser` = b.`uid` "
+												+ "JOIN `Product` AS c "
+												+ "ON a.`orderProduct` = c.`pNo` "
+												+ "ORDER BY a.`orderDate` DESC "
+												+ "LIMIT ?, 10";
+	public static final String SELECT_COUNT_ORDERS_TOTAL = "SELECT COUNT(*) FROM `Order`";
+	public static final String DELETE_ORDER = "DELETE FROM `Order` WHERE `OrderNo` = ?";
 }

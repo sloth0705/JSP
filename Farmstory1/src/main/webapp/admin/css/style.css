@@ -231,7 +231,7 @@ footer > p {
     text-decoration: underline;
 }
 
-#orderPopup {
+.orderPopup {
     position: absolute;
     left: 0;
     top: 0;
@@ -243,7 +243,7 @@ footer > p {
     box-sizing: border-box;
 }
 
-#orderPopup > section {
+.orderPopup > section {
     position: relative;
     width: 400px;
     height: 100%;
@@ -253,14 +253,14 @@ footer > p {
     box-sizing: border-box;
 }
 
-#orderPopup > section > nav {}
-#orderPopup > section > nav > h1 {
+.orderPopup > section > nav {}
+.orderPopup > section > nav > h1 {
     font-size: 16px;
     font-weight: bold;
 }
-#orderPopup > section > nav > .btnClose {}
+.orderPopup > section > nav > .btnClose {}
 
-#orderPopup > section > article {
+.orderPopup > section > article {
     width: 100%;
     height: 100%;
     position: relative;
@@ -269,11 +269,11 @@ footer > p {
     overflow: hidden;
 }
 
-#orderPopup > section > article > h3 {
+.orderPopup > section > article > h3 {
     font-weight: bold;
 }
 
-#orderPopup > section > article > table {                     
+.orderPopup > section > article > table {                     
     width: 100%;
     border-collapse: collapse;
     margin-top: 6px;
@@ -281,20 +281,20 @@ footer > p {
     border-top: 2px solid #333;
 }
 
-#orderPopup > section > article > table td {
+.orderPopup > section > article > table td {
     padding: 4px;
     box-sizing: border-box;
 }
 
-#orderPopup > section > article > table .thumb {
+.orderPopup > section > article > table .thumb {
     width: 10%;
 }
 
-#orderPopup > section > article > table tr {
+.orderPopup > section > article > table tr {
     border-bottom: 1px dotted #999;
 }
 
-#orderPopup .btnClose {
+.orderPopup .btnClose {
     position: absolute;
     right: 10px;
     top: 10px;
@@ -305,6 +305,11 @@ footer > p {
     font-size: 0;
     border: 0;
     cursor: pointer;
+}
+
+.orderPopup img {
+	width: 120px;
+    height: 120px;
 }
 
 /* 회원관리 */        

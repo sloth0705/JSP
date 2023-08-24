@@ -1,5 +1,7 @@
 package farmstory1.dto;
 
+import java.text.DecimalFormat;
+
 public class OrderDTO {
 	private int orderNo;
 	private int orderProduct;
@@ -15,6 +17,10 @@ public class OrderDTO {
 	private String orderEtc;
 	private String orderUser;
 	private String orderDate;
+
+	private String name;
+	private String thumb1;
+	private String pName;
 
 	public int getOrderNo() {
 		return orderNo;
@@ -44,6 +50,11 @@ public class OrderDTO {
 		return orderDelivery;
 	}
 
+	public String getOrderDeliveryWithComma() {
+		DecimalFormat df = new DecimalFormat("###,###");
+		return df.format(orderDelivery);
+	}
+
 	public void setOrderDelivery(int orderDelivery) {
 		this.orderDelivery = orderDelivery;
 	}
@@ -52,12 +63,22 @@ public class OrderDTO {
 		return orderPrice;
 	}
 
+	public String getOrderPriceWithComma() {
+		DecimalFormat df = new DecimalFormat("###,###");
+		return df.format(orderPrice);
+	}
+
 	public void setOrderPrice(int orderPrice) {
 		this.orderPrice = orderPrice;
 	}
 
 	public int getOrderTotal() {
 		return orderTotal;
+	}
+
+	public String getOrderTotalWithComma() {
+		DecimalFormat df = new DecimalFormat("###,###");
+		return df.format(orderTotal);
 	}
 
 	public void setOrderTotal(int orderTotal) {
@@ -126,5 +147,29 @@ public class OrderDTO {
 
 	public void setOrderDate(String orderDate) {
 		this.orderDate = orderDate;
+	}
+
+	public String getName() {
+		return name;
+	}
+
+	public void setName(String name) {
+		this.name = name;
+	}
+
+	public String getpName() {
+		return pName;
+	}
+
+	public void setpName(String pName) {
+		this.pName = pName;
+	}
+
+	public String getThumb1() {
+		return thumb1;
+	}
+
+	public void setThumb1(String thumb1) {
+		this.thumb1 = thumb1;
 	}
 }
