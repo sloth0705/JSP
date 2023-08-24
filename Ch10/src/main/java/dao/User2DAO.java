@@ -8,18 +8,18 @@ import java.sql.Statement;
 import java.util.ArrayList;
 import java.util.List;
 
-import dto.User1DTO;
+import dto.User2DTO;
 
-public class User1DAO {
+public class User2DAO {
 	private final String HOST = "jdbc:mysql://13.209.17.103:3306/userdb";
 	private final String USER = "user";
 	private final String PASS = "a1s2d3F$";
 
-	public void insertUser1(User1DTO dto) {
+	public void insertUser2(User2DTO dto) {
 		try {
 			Class.forName("com.mysql.cj.jdbc.Driver");
 			Connection conn = DriverManager.getConnection(HOST, USER, PASS);
-			PreparedStatement psmt = conn.prepareStatement("INSERT INTO `user1` VALUES(?, ?, ?, ?)");
+			PreparedStatement psmt = conn.prepareStatement("INSERT INTO `user2` VALUES(?, ?, ?, ?)");
 			psmt.setString(1, dto.getUid());
 			psmt.setString(2, dto.getName());
 			psmt.setString(3, dto.getHp());
@@ -33,16 +33,16 @@ public class User1DAO {
 		}
 	}
 
-	public User1DTO selectUser1(String uid) {
-		User1DTO dto = null;
+	public User2DTO selectUser2(String uid) {
+		User2DTO dto = null;
 		try {
 			Class.forName("com.mysql.cj.jdbc.Driver");
 			Connection conn = DriverManager.getConnection(HOST, USER, PASS);
-			PreparedStatement psmt = conn.prepareStatement("SELECT * FROM `user1` WHERE `uid` = ?");
+			PreparedStatement psmt = conn.prepareStatement("SELECT * FROM `user2` WHERE `uid` = ?");
 			psmt.setString(1, uid);
 			ResultSet rs = psmt.executeQuery();
 			if (rs.next()) {
-				dto = new User1DTO();
+				dto = new User2DTO();
 				dto.setUid(rs.getString(1));
 				dto.setName(rs.getString(2));
 				dto.setHp(rs.getString(3));
@@ -57,15 +57,15 @@ public class User1DAO {
 		return dto;
 	}
 
-	public List<User1DTO> selectUser1s() {
-		List<User1DTO> users = new ArrayList<>();
+	public List<User2DTO> selectUser2s() {
+		List<User2DTO> users = new ArrayList<>();
 		try {
 			Class.forName("com.mysql.cj.jdbc.Driver");
 			Connection conn = DriverManager.getConnection(HOST, USER, PASS);
 			Statement stmt = conn.createStatement();
-			ResultSet rs = stmt.executeQuery("SELECT * FROM `user1`");
+			ResultSet rs = stmt.executeQuery("SELECT * FROM `user2`");
 			while (rs.next()) {
-				User1DTO dto = new User1DTO();
+				User2DTO dto = new User2DTO();
 				dto.setUid(rs.getString(1));
 				dto.setName(rs.getString(2));
 				dto.setHp(rs.getString(3));
@@ -81,11 +81,11 @@ public class User1DAO {
 		return users;
 	}
 
-	public void updateUser1(User1DTO dto) {
+	public void updateUser2(User2DTO dto) {
 		try {
 			Class.forName("com.mysql.cj.jdbc.Driver");
 			Connection conn = DriverManager.getConnection(HOST, USER, PASS);
-			PreparedStatement psmt = conn.prepareStatement("UPDATE `user1` SET `name` = ?, `hp` = ?, `age` = ? WHERE `uid` = ?");
+			PreparedStatement psmt = conn.prepareStatement("UPDATE `user2` SET `name` = ?, `hp` = ?, `age` = ? WHERE `uid` = ?");
 			psmt.setString(1, dto.getName());
 			psmt.setString(2, dto.getHp());
 			psmt.setInt(3, dto.getAge());
@@ -98,14 +98,13 @@ public class User1DAO {
 		}
 	}
 
-	public void deleteUser1(String uid) {
+	public void deleteUser2(String uid) {
 		try {
 			Class.forName("com.mysql.cj.jdbc.Driver");
 			Connection conn = DriverManager.getConnection(HOST, USER, PASS);
-			PreparedStatement psmt = conn.prepareStatement("DELETE FROM `user1` WHERE `uid` = ?");
+			PreparedStatement psmt = conn.prepareStatement("DELETE FROM `user2` WHERE `uid` = ?");
 			psmt.setString(1, uid);
 			psmt.executeUpdate();
-
 			psmt.close();
 			conn.close();
 		} catch (Exception e) {
