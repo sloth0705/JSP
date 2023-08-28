@@ -68,4 +68,7 @@ public class SQL {
 	public static final String DELETE_COMMENT = "DELETE FROM `Article` "
 												+ "WHERE `no` = ?";
 	public static final String SELECT_TERMS = "SELECT * FROM `Terms`";
+	public static final String CHECK_UID = "SELECT COUNT(*) FROM `User` WHERE `uid` = ?";
+	public static final String CHECK_NICK = "SELECT COUNT(*) FROM `User` WHERE `nick` = ?";
+	public static final String CHECK_HP = "SELECT COUNT(*) FROM `User` WHERE `hp` = ?";
 }
