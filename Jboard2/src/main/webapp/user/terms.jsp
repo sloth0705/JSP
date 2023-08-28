@@ -1,4 +1,5 @@
 <%@ page contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <%@ include file="./_header.jsp" %>
 <main id="user">
     <section class="terms">
@@ -6,7 +7,7 @@
             <caption>사이트 이용약관</caption>
             <tr>
                 <td>
-                    <textarea name="terms">약관내용</textarea>
+                    <textarea name="terms">${terms.terms }</textarea>
                     <label><input type="checkbox" class="terms">&nbsp;동의합니다.</label>
                 </td>
             </tr>
@@ -15,7 +16,7 @@
             <caption>개인정보 취급방침</caption>
             <tr>
                 <td>
-                    <textarea name="privacy">약관내용</textarea>
+                    <textarea name="privacy">${terms.privacy }</textarea>
                     <label><input type="checkbox" class="privacy">&nbsp;동의합니다.</label>
                 </td>
             </tr>
