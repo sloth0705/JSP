@@ -33,9 +33,32 @@ public class UserDAO extends DBHelper {
 		}
 	}
 
-	public UserDTO selectUser(String uid) {
+	public UserDTO selectUser(String uid, String pass) {
 		UserDTO dto = null;
-
+		try {
+			psmt = getConnection().prepareStatement(SQL.SELECT_USER);
+			psmt.setString(1, uid);
+			psmt.setString(2, pass);
+			rs = psmt.executeQuery();
+			if (rs.next()) {
+				dto = new UserDTO();
+				dto.setUid(rs.getString("uid"));
+				dto.setPass(rs.getString("pass"));
+				dto.setName(rs.getString("name"));
+				dto.setNick(rs.getString("nick"));
+				dto.setEmail(rs.getString("email"));
+				dto.setHp(rs.getString("hp"));
+				dto.setRole(rs.getString("role"));
+				dto.setZip(rs.getString("zip"));
+				dto.setAddr1(rs.getString("addr1"));
+				dto.setAddr2(rs.getString("addr2"));
+				dto.setRegip(rs.getString("regip"));
+				dto.setRegDate(rs.getString("regDate"));
+				dto.setLeaveDate(rs.getString("leaveDate"));
+			}
+		} catch(Exception e) {
+			logger.error("selectUser error : " + e.getMessage());
+		}
 		return dto;
 	}
 
