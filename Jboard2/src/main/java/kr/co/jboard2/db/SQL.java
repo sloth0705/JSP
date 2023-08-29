@@ -71,4 +71,6 @@ public class SQL {
 	public static final String CHECK_UID = "SELECT COUNT(*) FROM `User` WHERE `uid` = ?";
 	public static final String CHECK_NICK = "SELECT COUNT(*) FROM `User` WHERE `nick` = ?";
 	public static final String CHECK_HP = "SELECT COUNT(*) FROM `User` WHERE `hp` = ?";
+	public static final String FIND_USER_COUNT_BY_NAME_AND_EMAIL = "SELECT COUNT(*) FROM `User` WHERE `name` = ? AND `email` = ?";
+	public static final String FIND_USER_BY_NAME_AND_EMAIL = "SELECT * FROM `User` WHERE `name` = ? AND `email` = ?";
 }

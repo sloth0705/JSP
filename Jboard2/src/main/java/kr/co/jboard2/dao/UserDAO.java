@@ -56,7 +56,7 @@ public class UserDAO extends DBHelper {
 				dto.setRegDate(rs.getString("regDate"));
 				dto.setLeaveDate(rs.getString("leaveDate"));
 			}
-		} catch(Exception e) {
+		} catch (Exception e) {
 			logger.error("selectUser error : " + e.getMessage());
 		}
 		return dto;
@@ -74,5 +74,52 @@ public class UserDAO extends DBHelper {
 
 	public void deleteUser(String uid) {
 
+	}
+
+	public int findUserCountByNameAndEmail(String name, String email) {
+		int result = 0;
+		try {
+			psmt = getConnection().prepareStatement(SQL.FIND_USER_COUNT_BY_NAME_AND_EMAIL);
+			psmt.setString(1, name);
+			psmt.setString(2, email);
+			rs = psmt.executeQuery();
+			if (rs.next()) {
+				result = rs.getInt(1);
+			}
+			close();
+		} catch (Exception e) {
+			logger.error("findUserCountByNameAndEmail error : " + e.getMessage());
+		}
+		return result;
+	}
+	
+	public UserDTO findUserByNameAndEmail(String name, String email) {
+		UserDTO dto = null;
+		try {
+			psmt = getConnection().prepareStatement(SQL.FIND_USER_BY_NAME_AND_EMAIL);
+			psmt.setString(1, name);
+			psmt.setString(2, email);
+			rs = psmt.executeQuery();
+			if (rs.next()) {
+				dto = new UserDTO();
+				dto.setUid(rs.getString("uid"));
+				dto.setPass(rs.getString("pass"));
+				dto.setName(rs.getString("name"));
+				dto.setNick(rs.getString("nick"));
+				dto.setEmail(rs.getString("email"));
+				dto.setHp(rs.getString("hp"));
+				dto.setRole(rs.getString("role"));
+				dto.setZip(rs.getString("zip"));
+				dto.setAddr1(rs.getString("addr1"));
+				dto.setAddr2(rs.getString("addr2"));
+				dto.setRegip(rs.getString("regip"));
+				dto.setRegDate(rs.getString("regDate"));
+				dto.setLeaveDate(rs.getString("leaveDate"));
+			}
+			close();
+		} catch (Exception e) {
+			logger.error("findUserByNameAndEmail error : " + e.getMessage());
+		}
+		return dto;
 	}
 }
