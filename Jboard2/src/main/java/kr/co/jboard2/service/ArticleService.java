@@ -31,8 +31,8 @@ public enum ArticleService {
 		return dao.selectArticle(no);
 	}
 
-	public List<ArticleDTO> selectArticles() {
-		return dao.selectArticles();
+	public List<ArticleDTO> selectArticles(int start) {
+		return dao.selectArticles(start);
 	}
 
 	public void updateArticle(ArticleDTO dto) {
@@ -41,6 +41,10 @@ public enum ArticleService {
 
 	public void deleteArticle(int no) {
 		dao.deleteArticle(no);
+	}
+	
+	public int selectCountTotal() {
+		return dao.selectCountTotal();
 	}
 
 	// 파일 업로드 경로 구하기
