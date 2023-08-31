@@ -19,7 +19,7 @@
                 <tr>
                     <th>파일</th>
                     <td>
-                        <input type="file" name="file"/>
+                        <input type="file" multiple="multiple" name="file"/>
                     </td>
                 </tr>
             </table>
