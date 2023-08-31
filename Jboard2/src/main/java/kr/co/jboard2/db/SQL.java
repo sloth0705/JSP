@@ -73,4 +73,10 @@ public class SQL {
 	public static final String CHECK_HP = "SELECT COUNT(*) FROM `User` WHERE `hp` = ?";
 	public static final String FIND_USER_COUNT_BY_NAME_AND_EMAIL = "SELECT COUNT(*) FROM `User` WHERE `name` = ? AND `email` = ?";
 	public static final String FIND_USER_BY_NAME_AND_EMAIL = "SELECT * FROM `User` WHERE `name` = ? AND `email` = ?";
+	public static final String INSERT_FILE = "INSERT INTO `File` "
+											+ "SET `ano` = ?, "
+											+ "`oriName` = ?, "
+											+ "`newName` = ?, "
+											+ "`rdate` = NOW()";
+	public static final String SELECT_MAX_NO = "SELECT MAX(`no`) FROM `Article`";
 }

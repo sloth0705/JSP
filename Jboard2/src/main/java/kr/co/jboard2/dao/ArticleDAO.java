@@ -1,5 +1,6 @@
 package kr.co.jboard2.dao;
 
+import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -23,18 +24,28 @@ public class ArticleDAO extends DBHelper {
 
 	private Logger logger = LoggerFactory.getLogger(this.getClass());
 
-	public void insertArticle(ArticleDTO dto) {
+	public int insertArticle(ArticleDTO dto) {
+		int no = 0;
 		try {
-			psmt = getConnection().prepareStatement(SQL.INSERT_ARTICLE);
+			conn = getConnection();
+			conn.setAutoCommit(false); // 트랜젝션 시작
+			psmt = conn.prepareStatement(SQL.INSERT_ARTICLE);
 			psmt.setString(1, dto.getTitle());
 			psmt.setString(2, dto.getContent());
 			psmt.setString(3, dto.getWriter());
 			psmt.setString(4, dto.getRegip());
 			psmt.executeUpdate();
+			stmt = conn.createStatement();
+			rs = stmt.executeQuery(SQL.SELECT_MAX_NO);
+			conn.commit(); // 작업확정
+			if (rs.next()) {
+				no = rs.getInt(1);
+			}
 			close();
 		} catch (Exception e) {
 			logger.error("insertArticle error : " + e.getMessage());
 		}
+		return no;
 	}
 
 	public ArticleDTO selectArticle(int no) {
@@ -46,12 +57,12 @@ public class ArticleDAO extends DBHelper {
 		List<ArticleDTO> articles = new ArrayList<>();
 		return articles;
 	}
-	
+
 	public void updateArticle(ArticleDTO dto) {
-		
+
 	}
-	
+
 	public void deleteArticle(int no) {
-		
+
 	}
 }

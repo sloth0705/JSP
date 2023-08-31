@@ -10,8 +10,8 @@ public enum ArticleService {
 
 	private ArticleDAO dao = ArticleDAO.getInstance();
 
-	public void insertArticle(ArticleDTO dto) {
-		dao.insertArticle(dto);
+	public int insertArticle(ArticleDTO dto) {
+		return dao.insertArticle(dto);
 	}
 
 	public ArticleDTO selectArticle(int no) {
@@ -28,5 +28,20 @@ public enum ArticleService {
 
 	public void deleteArticle(int no) {
 		dao.deleteArticle(no);
+	}
+
+	// 파일 업로드 경로 구하기
+	public void getUploadPath() {
+		
+	}
+
+	// 파일 업로드
+	public void uploadFile() {
+
+	}
+
+	// 파일 다운로드
+	public void downloadFile() {
+
 	}
 }
