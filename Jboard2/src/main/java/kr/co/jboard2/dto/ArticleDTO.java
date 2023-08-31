@@ -79,6 +79,14 @@ public class ArticleDTO {
 		this.file = file;
 	}
 
+	public void setFile(String oName) {
+		if (oName != null && !oName.equals("")) {
+			this.file = 1;
+		} else {
+			this.file = 0;
+		}
+	}
+
 	public int getHit() {
 		return hit;
 	}

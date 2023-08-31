@@ -57,11 +57,12 @@ public class WriteController extends HttpServlet {
 		ArticleDTO dto = new ArticleDTO();
 		dto.setTitle(title);
 		dto.setContent(content);
+		dto.setFile(oName);
 		dto.setWriter(writer);
 		dto.setRegip(regip);
 		int no = aService.insertArticle(dto);
 		// 파일명 수정
-		if (oName != null && oName != "") {
+		if (oName != null && !oName.equals("")) {
 			int idx = oName.lastIndexOf(".");
 			String ext = oName.substring(idx);
 			String uuid = UUID.randomUUID().toString();
