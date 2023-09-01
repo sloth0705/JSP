@@ -8,14 +8,16 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
+import com.google.gson.JsonObject;
+
 import kr.co.jboard2.dto.ArticleDTO;
 import kr.co.jboard2.service.ArticleService;
 
 @WebServlet("/insertComment.do")
-public class InsertCommentController extends HttpServlet{
+public class InsertCommentController extends HttpServlet {
 	private static final long serialVersionUID = -6478467559682653565L;
 	private ArticleService service = ArticleService.INSTANCE;
-	
+
 	@Override
 	protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
 		String parent = req.getParameter("parent");
@@ -27,8 +29,11 @@ public class InsertCommentController extends HttpServlet{
 		dto.setWriter(writer);
 		dto.setContent(content);
 		dto.setRegip(regip);
-		service.insertComment(dto);
+		int result = service.insertComment(dto);
 		service.plusComment(parent);
-		resp.sendRedirect("/Jboard2/view.do?no=" + parent);
+		// resp.sendRedirect("/Jboard2/view.do?no=" + parent);
+		JsonObject json = new JsonObject();
+		json.addProperty("result", result);
+		resp.getWriter().print(json);
 	}
 }

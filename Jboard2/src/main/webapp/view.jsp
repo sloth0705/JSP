@@ -1,6 +1,35 @@
 <%@ page contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <%@ include file="./_header.jsp" %>
+<script>
+	$(function() {
+		$('#btnComment').click(function(e) {
+			e.preventDefault();
+			const content = $('#formComment > textarea[name=content]').val();
+			const parent = $('#formComment > input[name=parent]').val();
+			const writer = $('#formComment > input[name=writer]').val();
+			const jsonData = {
+					"content" : content,
+					"parent" : parent,
+					"writer" : writer
+			}
+			
+			$.ajax({
+				url: '/Jboard2/insertComment.do',
+				type: 'post',
+				data: jsonData,
+				dataType: 'json',
+				success: function(data) {
+					if (data.result > 0) {
+						alert('댓글이 등록되었습니다.');
+					} else {
+						alert('댓글이 등록이 실패했습니다.');
+					}
+				}
+			});
+		});
+	});
+</script>
 <main id="board">
     <section class="view">
         <table>
@@ -29,8 +58,8 @@
         </div>
         <!-- 댓글목록 -->
 		<section class="commentList">
-	        <c:forEach var="comment" items="${comments}">
 		    <h3>댓글목록</h3>                   
+	        <c:forEach var="comment" items="${comments}">
 		    <article>
 		        <span class="nick">${comment.nick }</span>
 		        <span class="date">${comment.rdate }</span>
@@ -48,13 +77,13 @@
 		<!-- 댓글쓰기 -->
         <section class="commentForm">
             <h3>댓글쓰기</h3>
-            <form action="/Jboard2/insertComment.do" method="post">
+            <form id="formComment" action="#" method="post">
             	<input type="hidden" name="parent" value="${article.no }">
             	<input type="hidden" name="writer" value="${sessionScope.sessUser.uid }">
                 <textarea name="content"></textarea>
                 <div>
                     <a href="#" class="btn btnCancel">취소</a>
-                    <input type="submit" value="작성완료" class="btn btnComplete"/>
+                    <input type="submit" id="btnComment" value="작성완료" class="btn btnComplete"/>
                 </div>
             </form>
         </section>
