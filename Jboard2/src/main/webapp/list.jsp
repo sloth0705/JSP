@@ -3,8 +3,8 @@
 <%@ include file="./_header.jsp" %>
 <main id="board">
     <section class="list">                
-        <form action="#">
-            <input type="text" name="search" placeholder="제목 키워드, 글쓴이 검색">
+        <form action="/Jboard2/list.do" method="get">
+            <input type="text" name="search" placeholder="제목 키워드 검색">
             <input type="submit" value="검색">
         </form>
         <table>
@@ -28,7 +28,7 @@
         </table>
         <div class="page">
         	<c:if test="${pageGroupStart gt 1 }">
-            <a href="/Jboard2/list.do?pg${pageGroupStart - 1 }" class="prev">이전</a>
+            <a href="/Jboard2/list.do?pg=${pageGroupStart - 1 }" class="prev">이전</a>
             </c:if>
             <c:forEach var="i" begin="${pageGroupStart }" end="${pageGroupEnd }">
             <a href="/Jboard2/list.do?pg=${i }" class="num ${i == currentPage ? "current" : ""}">${i }</a>

@@ -33,6 +33,7 @@ public class ListController extends HttpServlet {
 			resp.sendRedirect("/Jboard2/user/login.do?success=101");
 		} else {
 			String pg = req.getParameter("pg");
+			String search = req.getParameter("search");
 			
 			// 페이지 관련 변수 선언
 			int currentPage = 1;
@@ -53,7 +54,7 @@ public class ListController extends HttpServlet {
 			
 			
 			// 전체 개시물 갯수 조회
-			total = service.selectCountTotal();
+			total = service.selectCountTotal(search);
 			
 			if (total % 10 == 0) {
 				lastPageNum = total / 10;	
@@ -74,7 +75,7 @@ public class ListController extends HttpServlet {
 			pageStartNum = total - start;
 			
 			// 현재 페이지 게시물 조회
-			List<ArticleDTO> articles =  service.selectArticles(start);
+			List<ArticleDTO> articles =  service.selectArticles(start, search);
 			req.setAttribute("articles", articles);
 			req.setAttribute("pageGroupStart", pageGroupStart);
 			req.setAttribute("pageGroupEnd", pageGroupEnd);

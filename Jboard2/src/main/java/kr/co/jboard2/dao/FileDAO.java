@@ -26,8 +26,25 @@ public class FileDAO extends DBHelper {
 		}
 	}
 
-	public FileDTO selectFile(int fno) {
+	public FileDTO selectFile(String fno) {
 		FileDTO dto = null;
+		try {
+			psmt = getConnection().prepareStatement(SQL.SELECT_FILE);
+			psmt.setString(1, fno);
+			rs = psmt.executeQuery();
+			if (rs.next()) {
+				dto = new FileDTO();
+				dto.setFno(rs.getInt(1));
+				dto.setAno(rs.getInt(2));
+				dto.setOriName(rs.getString(3));
+				dto.setNewName(rs.getString(4));
+				dto.setDownload(rs.getInt(5));
+				dto.setRdate(rs.getString(6));
+			}
+			close();
+		} catch (Exception e) {
+			logger.error("selectFile error : " + e.getMessage());
+		}
 		return dto;
 	}
 
@@ -40,7 +57,16 @@ public class FileDAO extends DBHelper {
 
 	}
 
-	public void deleteFile(int fno) {
-
+	public int deleteFile(String ano) {
+		int result = 0;
+		try {
+			psmt = getConnection().prepareStatement(SQL.DELETE_FILE);
+			psmt.setString(1, ano);
+			result = psmt.executeUpdate();
+			close();
+		} catch (Exception e) {
+			logger.error("deleteFile error : " + e.getMessage());
+		}
+		return result;
 	}
 }

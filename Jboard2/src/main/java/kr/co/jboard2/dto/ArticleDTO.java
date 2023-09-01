@@ -22,6 +22,7 @@ public class ArticleDTO {
 
 	// 추가필드
 	private String nick;
+	private FileDTO fileDto;
 
 	public int getNo() {
 		return no;
@@ -37,6 +38,10 @@ public class ArticleDTO {
 
 	public void setParent(int parent) {
 		this.parent = parent;
+	}
+	
+	public void setParent(String parent) {
+		this.parent = Integer.parseInt(parent);
 	}
 
 	public int getComment() {
@@ -129,5 +134,13 @@ public class ArticleDTO {
 
 	public void setNick(String nick) {
 		this.nick = nick;
+	}
+
+	public FileDTO getFileDto() {
+		return fileDto;
+	}
+
+	public void setFileDto(FileDTO fileDto) {
+		this.fileDto = fileDto;
 	}
 }

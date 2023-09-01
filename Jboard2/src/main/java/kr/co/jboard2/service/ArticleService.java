@@ -1,12 +1,17 @@
 package kr.co.jboard2.service;
 
+import java.io.BufferedInputStream;
+import java.io.BufferedOutputStream;
 import java.io.File;
+import java.io.FileInputStream;
 import java.io.IOException;
+import java.net.URLEncoder;
 import java.util.List;
 import java.util.UUID;
 
 import javax.servlet.ServletContext;
 import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpServletResponse;
 
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -16,6 +21,7 @@ import com.oreilly.servlet.multipart.DefaultFileRenamePolicy;
 
 import kr.co.jboard2.dao.ArticleDAO;
 import kr.co.jboard2.dto.ArticleDTO;
+import kr.co.jboard2.dto.FileDTO;
 
 public enum ArticleService {
 	INSTANCE;
@@ -27,24 +33,24 @@ public enum ArticleService {
 		return dao.insertArticle(dto);
 	}
 
-	public ArticleDTO selectArticle(int no) {
+	public ArticleDTO selectArticle(String no) {
 		return dao.selectArticle(no);
 	}
 
-	public List<ArticleDTO> selectArticles(int start) {
-		return dao.selectArticles(start);
+	public List<ArticleDTO> selectArticles(int start, String search) {
+		return dao.selectArticles(start, search);
 	}
 
 	public void updateArticle(ArticleDTO dto) {
 		dao.updateArticle(dto);
 	}
 
-	public void deleteArticle(int no) {
+	public void deleteArticle(String no) {
 		dao.deleteArticle(no);
 	}
 	
-	public int selectCountTotal() {
-		return dao.selectCountTotal();
+	public int selectCountTotal(String search) {
+		return dao.selectCountTotal(search);
 	}
 
 	// 파일 업로드 경로 구하기
@@ -85,7 +91,43 @@ public enum ArticleService {
 	}
 
 	// 파일 다운로드
-	public void downloadFile() {
+	public void downloadFile(HttpServletRequest req, HttpServletResponse resp, FileDTO fileDto) throws IOException {
+		// response 파일 다운로드 헤더 수정
+		resp.setContentType("application/octet-stream");
+		resp.setHeader("Content-Disposition", "attachment; filename=" + URLEncoder.encode(fileDto.getOriName(), "utf-8"));
+		resp.setHeader("Content-Transfer-Encoding", "binary");
+		resp.setHeader("Pragma", "no-cache");
+		resp.setHeader("Cache-Control", "private");
 
+		// response 파일 스트림 작업
+		String path = getFilePath(req);
+		File file = new File(path + "/" + fileDto.getNewName());
+
+		BufferedInputStream bis = new BufferedInputStream(new FileInputStream(file));
+		BufferedOutputStream bos = new BufferedOutputStream(resp.getOutputStream());
+
+		while (true) {
+			int data = bis.read();
+			if (data == -1) {
+				break;
+			}
+			bos.write(data);
+		}
+		bos.close();
+		bis.close();
+		
+		dao.downloadFile(fileDto.getFno());
+	}
+	
+	public List<ArticleDTO> selectComments(int parent) {
+		return dao.selectComments(parent);
+	}
+	
+	public void insertComment(ArticleDTO dto) {
+		dao.insertComment(dto);
+	}
+	
+	public void plusComment(String parent) {
+		dao.plusComment(parent);
 	}
 }

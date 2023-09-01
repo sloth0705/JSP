@@ -43,8 +43,9 @@ public class SQL {
 												+ "`regip` = ?, "
 												+ "`rdate` = NOW()";
 	public static final String SELECT_ARTICLE = "SELECT * "
-												+ "FROM `Article` "
-												+ "WHERE `no` = ?";
+												+ "FROM `Article` AS a "
+												+ "LEFT OUTER JOIN `File` AS b on a.`no` = b.`ano` "
+												+ "WHERE a.`no` = ?";
 	public static final String SELECT_ARTICLES = "SELECT a.*, "
 												+ "b.nick "
 												+ "FROM `Article` AS a "
@@ -52,6 +53,14 @@ public class SQL {
 												+ "WHERE `parent` = 0 "
 												+ "ORDER BY a.`no` DESC "
 												+ "LIMIT ?, 10";
+	public static final String SELECT_ARTICLES_FOR_SEARCH = "SELECT a.*, "
+															+ "b.nick "
+															+ "FROM `Article` AS a "
+															+ "JOIN `User` AS b on a.`writer` = b.`uid` "
+															+ "WHERE `parent` = 0 AND "
+															+ "`title` LIKE ? "
+															+ "ORDER BY a.`no` DESC "
+															+ "LIMIT ?, 10";
 	public static final String SELECT_COMMENTS =  "SELECT a.*, "
 												+ "b.nick "
 												+ "FROM `Article` AS a "
@@ -60,6 +69,10 @@ public class SQL {
 	public static final String SELECT_COUNT_TOTAL = "SELECT COUNT(*) "
 													+ "FROM `Article` "
 													+ "WHERE `parent` = 0";
+	public static final String SELECT_COUNT_TOTAL_FOR_SEARCH = "SELECT COUNT(*) "
+																+ "FROM `Article` "
+																+ "WHERE `parent` = 0 AND "
+																+ "`title` LIKE ?";
 	public static final String UPDATE_ARTICLE_FOR_COMMENT = "UPDATE `Article` "
 															+ "SET `comment` = `comment` + 1 "
 															+ "WHERE `no` = ?";
@@ -80,4 +93,8 @@ public class SQL {
 											+ "`newName` = ?, "
 											+ "`rdate` = NOW()";
 	public static final String SELECT_MAX_NO = "SELECT MAX(`no`) FROM `Article`";
+	public static final String SELECT_FILE = "SELECT * FROM `File` WHERE `fno` = ?";
+	public static final String DOWNLOAD_FILE = "UPDATE `File` SET `download` = `download` + 1 WHERE `fno` = ?";
+	public static final String DELETE_FILE = "DELETE FROM `File` WHERE `ano` = ?";
+	public static final String DELETE_ARTICLE = "DELETE FROM `Article` WHERE `no` = ?";
 }
