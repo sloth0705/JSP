@@ -1,4 +1,5 @@
 <%@ page contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <div id="sub">
     <div><img src="/Farmstory2/images/sub_top_tit3.png" alt="CROP TALK"></div>
     <section class="croptalk">
@@ -15,6 +16,16 @@
                 <img src="/Farmstory2/images/sub_nav_tit_cate3_${cate }.png" alt="농작물이야기"/>
                 <p>
                     HOME > 농작물이야기 >
-                    <em>농작물이야기</em>
+                    <c:choose>
+                    	<c:when test="${cate eq 'story' }">
+                    		<em>농작물이야기</em>
+                    	</c:when>
+                    	<c:when test="${cate eq 'grow' }">
+                    		<em>텃밭가꾸기</em>
+                    	</c:when>
+                    	<c:when test="${cate eq 'school' }">
+                    		<em>귀농학교</em>
+                    	</c:when>
+                    </c:choose>
                 </p>
             </nav>

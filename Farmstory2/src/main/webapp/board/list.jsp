@@ -1,6 +1,6 @@
 <%@ page contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
 <%@ include file="../_header.jsp"%>
-<c:import url="./_asideCroptalk.jsp"></c:import>
+<c:import url="./_aside${group }.jsp"></c:import>
             <!-- 내용 시작 -->
 			<section class="list">
 			    <h3>글목록</h3>
