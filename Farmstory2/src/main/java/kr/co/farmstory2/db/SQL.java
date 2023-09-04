@@ -23,6 +23,7 @@ public class SQL {
 												+ "SET `cate` = ?, "
 												+ "`title` = ?, "
 												+ "`content` = ?, "
+												+ "`file` = ?, "
 												+ "`writer` = ?, "
 												+ "`regip` = ?, "
 												+ "`rdate` = NOW()";
@@ -143,4 +144,12 @@ public class SQL {
 	public static final String CHECK_UID = "SELECT COUNT(*) FROM `User` WHERE `uid` = ?";
 	public static final String CHECK_NICK = "SELECT COUNT(*) FROM `User` WHERE `nick` = ?";
 	public static final String CHECK_HP = "SELECT COUNT(*) FROM `User` WHERE `hp` = ?";
+	public static final String DOWNLOAD_FILE = "UPDATE `File` SET `download` = `download` + 1 WHERE `fNo` = ?";
+	public static final String SELECT_MAX_NO = "SELECT MAX(`no`) FROM `Article`";
+	public static final String INSERT_FILE = "INSERT INTO `File` "
+											+ "SET `aNo` = ?, "
+											+ "`oriName` = ?, "
+											+ "`newName` = ?, "
+											+ "`rdate` = NOW()";
+	public static final String SELECT_FILE = "SELECT * FROM `File` WHERE `aNo` = ?";
 }

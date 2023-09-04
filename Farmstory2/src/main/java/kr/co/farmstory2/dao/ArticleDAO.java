@@ -23,12 +23,56 @@ public class ArticleDAO extends DBHelper {
 
 	private Logger logger = LoggerFactory.getLogger(this.getClass());
 
-	public void insertArticle(ArticleDTO dto) {
-
+	public int insertArticle(ArticleDTO dto) {
+		int result = 0;
+		try {
+			conn = getConnection();
+			conn.setAutoCommit(false);
+			psmt = conn.prepareStatement(SQL.INSERT_ARTICLE);
+			psmt.setString(1, dto.getCate());
+			psmt.setString(2, dto.getTitle());
+			psmt.setString(3, dto.getContent());
+			psmt.setInt(4, dto.getFile());
+			psmt.setString(5, dto.getWriter());
+			psmt.setString(6, dto.getRegip());
+			psmt.executeUpdate();
+			stmt = conn.createStatement();
+			rs = stmt.executeQuery(SQL.SELECT_MAX_NO);
+			conn.commit(); // 작업확정
+			if (rs.next()) {
+				result = rs.getInt(1);
+			}
+			close();
+		} catch (Exception e) {
+			logger.error("insertArticle error : " + e.getMessage());
+		}
+		return result;
 	}
 
 	public ArticleDTO selectArticle(String no) {
 		ArticleDTO dto = null;
+		try {
+			psmt = getConnection().prepareStatement(SQL.SELECT_ARTICLE);
+			psmt.setString(1, no);
+			rs = psmt.executeQuery();
+			if (rs.next()) {
+				dto = new ArticleDTO();
+				dto.setNo(rs.getInt("no"));
+				dto.setParent(rs.getInt("parent"));
+				dto.setComment(rs.getInt("comment"));
+				dto.setCate(rs.getString("cate"));
+				dto.setTitle(rs.getString("title"));
+				dto.setContent(rs.getString("content"));
+				dto.setFile(rs.getInt("file"));
+				dto.setHit(rs.getInt("hit"));
+				dto.setWriter(rs.getString("writer"));
+				dto.setRegip(rs.getString("regip"));
+				dto.setRdate(rs.getString("rdate"));
+				dto.setNick(rs.getString("nick"));
+			}
+		} catch (Exception e) {
+			logger.error("selectArticle error : " + e.getMessage());
+		}
 		return dto;
 	}
 
@@ -84,5 +128,45 @@ public class ArticleDAO extends DBHelper {
 			logger.error("selectCountTotal error : " + e.getMessage());
 		}
 		return result;
+	}
+	
+	public void downloadFile(int fno) {
+		try {
+			psmt = getConnection().prepareStatement(SQL.DOWNLOAD_FILE);
+			psmt.setInt(1, fno);
+			psmt.executeUpdate();
+			close();
+		} catch (Exception e) {
+			logger.error("downloadFile error : " + e.getMessage());
+		}
+	}
+	
+	public List<ArticleDTO> selectComments(String parent) {
+		List<ArticleDTO> comments = new ArrayList<ArticleDTO>();
+		try {
+			psmt = getConnection().prepareStatement(SQL.SELECT_COMMENTS);
+			psmt.setString(1, parent);
+			rs = psmt.executeQuery();
+			while (rs.next()) {
+				ArticleDTO dto = new ArticleDTO();
+				dto.setNo(rs.getInt("no"));
+				dto.setParent(rs.getInt("parent"));
+				dto.setComment(rs.getInt("comment"));
+				dto.setCate(rs.getString("cate"));
+				dto.setTitle(rs.getString("title"));
+				dto.setContent(rs.getString("content"));
+				dto.setFile(rs.getInt("file"));
+				dto.setHit(rs.getInt("hit"));
+				dto.setWriter(rs.getString("writer"));
+				dto.setRegip(rs.getString("regip"));
+				dto.setRdate(rs.getString("rdate"));
+				dto.setNick(rs.getString("nick"));
+				comments.add(dto);
+			}
+			close();
+		} catch (Exception e) {
+			logger.error("selectComments error : " + e.getMessage());
+		}
+		return comments;
 	}
 }

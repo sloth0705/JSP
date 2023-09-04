@@ -16,7 +16,7 @@
 			            <c:forEach var="article" items="${articles}" varStatus="status">
 		                <tr>
 		                    <td>${pageStartNum - status.index}</td>
-		                    <td><a href="/Farmstory2/board/view.do?no=&group=${group }&cate=${cate}">${article.title }</a>&nbsp;[${article.hit }]</td>
+		                    <td><a href="/Farmstory2/board/view.do?no=${article.no }&group=${group }&cate=${cate}">${article.title }</a>&nbsp;[${article.hit }]</td>
 			                <td>${article.nick}</td>
 			                <td>${article.rdate }</td>
 			                <td>${article.hit }</td>
