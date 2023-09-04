@@ -32,6 +32,10 @@ public class ArticleDTO {
 		this.parent = parent;
 	}
 
+	public void setParent(String parent) {
+		this.parent = Integer.parseInt(parent);
+	}
+
 	public int getComment() {
 		return comment;
 	}
@@ -71,7 +75,7 @@ public class ArticleDTO {
 	public void setFile(int file) {
 		this.file = file;
 	}
-	
+
 	public void setFile(String oName) {
 		if (oName != null && !oName.equals("")) {
 			this.file = 1;

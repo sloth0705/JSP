@@ -110,7 +110,6 @@
 			        </c:if>
 			        <a href="/Farmstory2/board/list.do?group=${group }&cate=${cate}" class="btnList">목록</a>
 			    </div>  
-			    
 			    <!-- 댓글리스트 -->
 				 <section class="commentList">
 				     <h3>댓글목록</h3>
@@ -119,8 +118,8 @@
 				         <form action="/Farmstory2/board/proc/commentUpdate.jsp" method="post">
 				         	<input type="hidden" name="no" value="${comment.no }">
 				         	<input type="hidden" name="parent" value="${no }">
-				         	<input type="hidden" name="group" value="${comment.group }"/>
-				         	<input type="hidden" name="cate" value="${comment.cate }"/>
+				         	<input type="hidden" name="group" value="${group }"/>
+				         	<input type="hidden" name="cate" value="${cate }"/>
 				         	<input type="hidden" name="prevComment" value="${comment.content }">
 							<span>
 							    <span>${comment.nick }</span>
@@ -142,11 +141,11 @@
 			             등록된 댓글이 없습니다.
 			         </p>
 			         </c:if>
-			 </section>
+		 	</section>
 			 	<!-- 댓글입력폼 -->
 			    <section class="commentForm">
 			        <h3>댓글쓰기</h3>
-			        <form action="/Farmstory2/proc/commentInsert.jsp" method="post">
+			        <form action="/Farmstory2/board/commentInsert.do" method="post">
 			        	<input type="hidden" name="group" value="${group }">
 			        	<input type="hidden" name="cate" value="${cate }">
 			        	<input type="hidden" name="parent" value="${no }">

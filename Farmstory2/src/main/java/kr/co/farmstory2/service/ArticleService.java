@@ -120,7 +120,15 @@ public enum ArticleService {
 			dao.downloadFile(fileDto.getfNo());
 		}
 		
+		public void insertComment(ArticleDTO dto) {
+			dao.insertComment(dto);
+		}
+		
 		public List<ArticleDTO> selectComments(String parent) {
 			return dao.selectComments(parent);
+		}
+		
+		public void plusComment(String no) {
+			dao.plusComment(no);
 		}
 }

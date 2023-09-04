@@ -129,7 +129,7 @@ public class ArticleDAO extends DBHelper {
 		}
 		return result;
 	}
-	
+
 	public void downloadFile(int fno) {
 		try {
 			psmt = getConnection().prepareStatement(SQL.DOWNLOAD_FILE);
@@ -140,7 +140,21 @@ public class ArticleDAO extends DBHelper {
 			logger.error("downloadFile error : " + e.getMessage());
 		}
 	}
-	
+
+	public void insertComment(ArticleDTO dto) {
+		try {
+			psmt = getConnection().prepareStatement(SQL.INSERT_COMMENT);
+			psmt.setInt(1, dto.getParent());
+			psmt.setString(2, dto.getContent());
+			psmt.setString(3, dto.getWriter());
+			psmt.setString(4, dto.getRegip());
+			psmt.executeUpdate();
+			close();
+		} catch (Exception e) {
+			logger.error("insertComment error : " + e.getMessage());
+		}
+	}
+
 	public List<ArticleDTO> selectComments(String parent) {
 		List<ArticleDTO> comments = new ArrayList<ArticleDTO>();
 		try {
@@ -168,5 +182,16 @@ public class ArticleDAO extends DBHelper {
 			logger.error("selectComments error : " + e.getMessage());
 		}
 		return comments;
+	}
+
+	public void plusComment(String no) {
+		try {
+			psmt = getConnection().prepareStatement(SQL.PLUS_COMMENT);
+			psmt.setString(1, no);
+			psmt.executeUpdate();
+			close();
+		} catch (Exception e) {
+			logger.error("plusComment error : " + e.getMessage());
+		}
 	}
 }
