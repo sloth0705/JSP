@@ -2,7 +2,7 @@
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <div id="sub">
 	<div>
-		<img src="/Farmstoryf/images/sub_top_tit4.png" alt="CROP TALK">
+		<img src="/Farmstory2/images/sub_top_tit4.png" alt="CROP TALK">
 	</div>
 	<section class="event">
 		<aside>
