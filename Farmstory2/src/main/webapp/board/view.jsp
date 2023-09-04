@@ -92,7 +92,7 @@
 			        <tr>
 			            <td>첨부파일</td>
 			            <td>
-			                <a href="/fileDownload.do?fNo=${file.fNo }">${file.oriName }</a>
+			                <a href="/Farmstory2/fileDownload.do?fNo=${file.fNo }">${file.oriName }</a>
 			                <span>${file.download }회 다운로드</span>
 			            </td>
 			        </tr>
@@ -116,7 +116,7 @@
 				     <h3>댓글목록</h3>
 				     <c:forEach var="comment" items="${comments}" varStatus="status">
 			         <article class="comment">
-				         <form action="/Farmstory1/board/proc/commentUpdate.jsp" method="post">
+				         <form action="/Farmstory2/board/proc/commentUpdate.jsp" method="post">
 				         	<input type="hidden" name="no" value="${comment.no }">
 				         	<input type="hidden" name="parent" value="${no }">
 				         	<input type="hidden" name="group" value="${comment.group }"/>
@@ -129,7 +129,7 @@
 							<textarea name="comment" readonly>${comment.content }</textarea>
 							<c:if test="${comment.writer eq sessUser.uid }">
 							<div>
-							    <a href="/Farmstory1/board/proc/commentDelete.jsp?no=${comment.no }&parent=${no }&group=${group }&cate=${cate}" class="del">삭제</a>
+							    <a href="/Farmstory2/board/proc/commentDelete.jsp?no=${comment.no }&parent=${no }&group=${group }&cate=${cate}" class="del">삭제</a>
 							    <a href="#" class="can">취소</a>
 							    <a href="#" class="mod">수정</a>
 							</div>
@@ -146,7 +146,7 @@
 			 	<!-- 댓글입력폼 -->
 			    <section class="commentForm">
 			        <h3>댓글쓰기</h3>
-			        <form action="/Farmstory1/proc/commentInsert.jsp" method="post">
+			        <form action="/Farmstory2/proc/commentInsert.jsp" method="post">
 			        	<input type="hidden" name="group" value="${group }">
 			        	<input type="hidden" name="cate" value="${cate }">
 			        	<input type="hidden" name="parent" value="${no }">

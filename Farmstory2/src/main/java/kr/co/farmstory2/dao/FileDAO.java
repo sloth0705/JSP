@@ -53,4 +53,25 @@ public class FileDAO extends DBHelper {
 		}
 		return dto;
 	}
+	
+	public FileDTO selectFileBYfNO(String fNo) {
+		FileDTO dto = null;
+		try {
+			psmt = getConnection().prepareStatement(SQL.SELECT_FILE_BY_FNO);
+			psmt.setString(1, fNo);
+			rs = psmt.executeQuery();
+			if (rs.next()) {
+				dto = new FileDTO();
+				dto.setfNo(rs.getInt("fNo"));
+				dto.setaNo(rs.getInt("aNo"));
+				dto.setOriName(rs.getString("oriName"));
+				dto.setNewName(rs.getString("newName"));
+				dto.setDownload(rs.getInt("download"));
+				dto.setRdate(rs.getString("rdate"));
+			}
+		} catch (Exception e) {
+			logger.error("selectFile error : " + e.getMessage());
+		}
+		return dto;
+	}
 }

@@ -152,4 +152,5 @@ public class SQL {
 											+ "`newName` = ?, "
 											+ "`rdate` = NOW()";
 	public static final String SELECT_FILE = "SELECT * FROM `File` WHERE `aNo` = ?";
+	public static final String SELECT_FILE_BY_FNO = "SELECT * FROM `File` WHERE `fNo` = ?";
 }

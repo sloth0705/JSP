@@ -14,4 +14,8 @@ public enum FileService {
 	public FileDTO selectFile(String no) {
 		return dao.selectFile(no);
 	}
+	
+	public FileDTO selectFileBYfNO(String no) {
+		return dao.selectFileBYfNO(no);
+	}
 }
