@@ -1,5 +1,23 @@
 <%@ page contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
 <%@ include file="../_header.jsp" %>
+<script>
+	$(function() {
+		const chk1 = $('input[name=chk1]')[0];
+		const chk2 = $('input[name=chk2]')[0];
+		$('.btnNext').eq(0).click(function(e) {
+			e.preventDefault();
+			if (!chk1.checked) {
+				alert('사이트 이용약관에 동의해주세요.');
+				return;
+			}
+			if (!chk2.checked) {
+				alert('개인정보 취급방침에 동의해주세요.');
+				return;
+			}
+			location.href = '/Farmstory2/user/register.do';
+		});
+	});
+</script>
 <div id="user">
 	<section class="terms">
 	    <table>

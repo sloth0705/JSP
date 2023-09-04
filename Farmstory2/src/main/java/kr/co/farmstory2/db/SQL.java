@@ -4,19 +4,17 @@ public class SQL {
 	public static final String SELECT_TERMS = "SELECT * "
 											+ "FROM `Terms`";
 	public static final String INSERT_USER = "INSERT INTO `User` "
-											+ "VALUES(?, "
-											+ "SHA2(?, 256), "
-											+ "?, "
-											+ "?, "
-											+ "?, "
-											+ "?, "
-											+ "?, "
-											+ "?, "
-											+ "?, "
-											+ "?, "
-											+ "?, "
-											+ "now(), "
-											+ "?)";
+											+ "SET `uid` = ?, "
+											+ "`pass` = SHA2(?, 256), "
+											+ "`name` = ?, "
+											+ "`nick` = ?, "
+											+ "`email` = ?, "
+											+ "`hp` = ?, "
+											+ "`zip` = ?, "
+											+ "`addr1` = ?, "
+											+ "`addr2` = ?, "
+											+ "`regip` = ?, "
+											+ "`regDate` = now()";
 	public static final String SELECT_USER = "SELECT * "
 											+ "FROM `User` "
 											+ "WHERE `uid` = ? AND "
@@ -142,4 +140,7 @@ public class SQL {
 												+ "LIMIT ?, 10";
 	public static final String SELECT_COUNT_ORDERS_TOTAL = "SELECT COUNT(*) FROM `Order`";
 	public static final String DELETE_ORDER = "DELETE FROM `Order` WHERE `OrderNo` = ?";
+	public static final String CHECK_UID = "SELECT COUNT(*) FROM `User` WHERE `uid` = ?";
+	public static final String CHECK_NICK = "SELECT COUNT(*) FROM `User` WHERE `nick` = ?";
+	public static final String CHECK_HP = "SELECT COUNT(*) FROM `User` WHERE `hp` = ?";
 }

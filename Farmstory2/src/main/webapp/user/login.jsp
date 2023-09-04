@@ -1,5 +1,15 @@
 <%@ page contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
 <%@ include file="../_header.jsp" %>
+<script>
+	const success = ${success}
+	if (success == 100) {
+		alert('아이디, 비밀번호를 다시 확인하십시오.');
+	} else if (success == 101) {
+		alert('로그인이 필요한 페이지입니다.');
+	} else if (success == 200) {
+		alert('정상적으로 로그아웃 되었습니다.');
+	}
+</script>
 <div id="user">
     <section class="login">
          <form action="/Farmstory2/user/login.do" method="post">

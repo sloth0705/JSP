@@ -1,5 +1,7 @@
 <%@ page contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
 <%@ include file="../_header.jsp" %>
+<script src='/Farmstory2/js/checkUser.js'></script>
+<script src='/Farmstory2/js/validation.js'></script>
 <div id="user">
 	<section class="register">
 		<form id='formUser' action="/Farmstory2/user/register.do" method="post">
@@ -10,7 +12,7 @@
 		            <td>
 		                <input type="text" name="uid" placeholder="아이디 입력"/>
 		                <button type="button" id="btnCheckUid"><img src="../images/chk_id.gif" alt=""></button>
-		                <span class="resultId"></span>
+		                <span class="uidResult"></span>
 		            </td>
 		        </tr>
 		        <tr>
@@ -41,21 +43,28 @@
 		            <td>
 		                <p>공백없이 한글, 영문, 숫자만 입력가능</p>
 		                <input type="text" name="nick" placeholder="별명 입력"/>
-		                <span class="resultNick"></span>                            
+		                <button type="button" id="btnCheckNick"><img src="../images/chk_id.gif" alt="중복확인"/></button>
+		                <span class="nickResult"></span>                            
 		            </td>
 		        </tr>
 		        <tr>
 		            <td>E-Mail</td>
 		            <td>
 		                <input type="email" name="email" placeholder="이메일 입력"/>
-		                <span id="resultEmail"></span>
+                        <button type="button" id="btnEmailCode"><img src="/Farmstory2/images/chk_auth.gif" alt="인증번호 받기"/></button>
+                        <span class="codeEmail"></span>
+                        <div class="auth">
+                            <input type="text" name="auth" placeholder="인증번호 입력"/>
+                            <button type="button" id="btnEmailAuth"><img src="/Farmstory2/images/chk_confirm.gif" alt="확인"/></button>
+                            <span class="resultEmail"></span>
+                        </div>
 		            </td>
 		        </tr>
 		        <tr>
 		            <td>휴대폰</td>
 		            <td>
 		                <input type="text" name="hp" placeholder="- 포함 13자리 입력" minlength="13" maxlength="13" />
-		                <span id="resultHp"></span>
+		                <span class="resultHp"></span>
 		            </td>
 		        </tr>
 		        <tr>

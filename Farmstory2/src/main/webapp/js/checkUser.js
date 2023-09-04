@@ -7,12 +7,12 @@ let isEmailOk = false;
 let isHpOk = false;
 
 // 데이터 검증에 사용하는 정규표현식
-let reUid   = /^[a-z]+[a-z0-9]{4,19}$/g;
-let rePass  = /^(?=.*[a-zA-z])(?=.*[0-9])(?=.*[$`~!@$!%*#^?&\\(\\)\-_=+]).{5,16}$/;
-let reName  = /^[가-힣]{2,10}$/ 
-let reNick  = /^[a-zA-Zㄱ-힣0-9][a-zA-Zㄱ-힣0-9]*$/;
+let reUid = /^[a-z]+[a-z0-9]{4,19}$/g;
+let rePass = /^(?=.*[a-zA-z])(?=.*[0-9])(?=.*[$`~!@$!%*#^?&\\(\\)\-_=+]).{5,16}$/;
+let reName = /^[가-힣]{2,10}$/
+let reNick = /^[a-zA-Zㄱ-힣0-9][a-zA-Zㄱ-힣0-9]*$/;
 let reEmail = /^[0-9a-zA-Z]([-_\.]?[0-9a-zA-Z])*@[0-9a-zA-Z]([-_\.]?[0-9a-zA-Z])*\.[a-zA-Z]{2,3}$/i;
-let reHp    = /^01(?:0|1|[6-9])-(?:\d{4})-\d{4}$/;
+let reHp = /^01(?:0|1|[6-9])-(?:\d{4})-\d{4}$/;
 
 let flag = true;
 
@@ -21,7 +21,7 @@ $(function() {
 	// 이메일 인증코드
 	let receivedcode = 0;
 	let time = 0;
-	
+
 	// 비밀번호 검사
 	$('input[name=pass2]').focusout(function() {
 		const pass1 = $('input[name=pass1]').val();
@@ -39,7 +39,7 @@ $(function() {
 			isPassOk = false;
 		}
 	});
-	
+
 	// 이름 검사
 	$('input[name=name]').focusout(function() {
 		const name = $(this).val();
@@ -51,8 +51,8 @@ $(function() {
 			isNameOk = true;
 		}
 	});
-	
-	$('#btnCheckUid').click(function(e) {
+
+	$('#btnCheckUid').click(function() {
 		const uid = $('input[name=uid]').val();
 		if (!uid.match(reUid)) {
 			$('.uidResult').css('color', 'red').text('유효한 아이디가 아닙니다.');
@@ -64,15 +64,15 @@ $(function() {
 			return;
 		}
 		const jsonData = {
-				"type": "uid",
-				"uid" : uid
+			"type": "uid",
+			"uid": uid
 		};
 		$.ajax({
-			url : '/Farmstory2/user/userCheck.do',
-			type : 'GET',
-			data : jsonData,
-			dataType : 'json',
-			success : function(data){
+			url: '/Farmstory2/user/userCheck.do',
+			type: 'GET',
+			data: jsonData,
+			dataType: 'json',
+			success: function(data) {
 				if (data.result > 0) {
 					$('.uidResult').css('color', 'red').text('이미 사용중인 아이디입니다.');
 					isUidOk = false;
@@ -83,28 +83,28 @@ $(function() {
 			}
 		});
 	});
-	
+
 	// 닉네임 중복체크
-	$('#btnCheckNick').click(function(){
+	$('#btnCheckNick').click(function() {
 		// 입력 데이터 가져오기
 		const nick = $('input[name=nick]').val();
 		if (!nick.match(reNick)) {
 			$('.nickResult').css('color', 'red').text('유효한 닉네임이 아닙니다.');
 			isNickOk = false;
 			return;
-		} 
+		}
 		// JSON 생성
 		const jsonData = {
-				"type":"nick",
-				"nick" : nick
+			"type": "nick",
+			"nick": nick
 		};
 		// 데이터 전송
 		$.ajax({
-			url : '/Farmstory2/user/userCheck.do',
-			type : 'GET',
-			data : jsonData,
-			dataType : 'json',
-			success : function(data){
+			url: '/Farmstory2/user/userCheck.do',
+			type: 'GET',
+			data: jsonData,
+			dataType: 'json',
+			success: function(data) {
 				if (data.result > 0) {
 					$('.nickResult').css('color', 'red').text('이미 사용중인 별명입니다.');
 					isNickOk = false;
@@ -119,15 +119,15 @@ $(function() {
 	document.getElementsByName('hp')[0].addEventListener('focusout', function() {
 		const hp = $(this).val();
 		const jsonData = {
-				"type": "hp",
-				"hp" : hp
+			"type": "hp",
+			"hp": hp
 		};
 		$.ajax({
-			url : '/Farmstory2/user/userCheck.do',
-			type : 'GET',
-			data : jsonData,
-			dataType : 'json',
-			success : function(data){
+			url: '/Farmstory2/user/userCheck.do',
+			type: 'GET',
+			data: jsonData,
+			dataType: 'json',
+			success: function(data) {
 				if (data.result > 0) {
 					$('.resultHp').css('color', 'red').text('이미 사용중인 전화번호 입니다.');
 					isHpOk = false;
@@ -138,17 +138,17 @@ $(function() {
 			}
 		});
 	});
-	
+
 	// 이메일 인증
-	$('#btnEmailCode').click(function(){
+	$('#btnEmailCode').click(function() {
 		if (!flag) {
 			return false;
 		}
 		flag = false;
 		time = 30;
-		
+
 		const email = $('input[name=email]').val();
-		const jsonData = {'email' : email};
+		const jsonData = { 'email': email };
 		$('.codeEmail').text('인증코드 전송 중 입니다. 잠시만 기다려주세요.');
 		$.ajax({
 			url: '/Farmstory2/user/authEmail.do',
@@ -161,27 +161,38 @@ $(function() {
 				$('.auth').show();
 				$('.resultEmail').css('color', 'green').text('이메일을 확인 후 인증코드를 입력하세요.');
 				$('.codeEmail').text(time + '초 후 재전송 가능합니다.');
-			 	let interval = setInterval(function() {
-				   	time -= 1;
+				let interval = setInterval(function() {
+					time -= 1;
 					$('.codeEmail').text(time + '초 후 재전송 가능합니다.');
 					if (time == 0) {
 						flag = true;
 						$('.codeEmail').text('재전송 가능합니다.');
 						clearInterval(interval);
-					}   
-				}, 1000);	
+					}
+				}, 1000);
 			}
 		});
 	});
-	$('#btnEmailAuth').click(function(){
+	$('#btnEmailAuth').click(function() {
 		const code = $('input[name=auth]').val();
-		if (code == receivedcode) {
-			$('.resultEmail').css('color', 'green').text('이메일이 인증 되었습니다.');
-			isEmailOk = true;
-			
-		} else {
-			$('.resultEmail').css('color', red).text('인증에 실패했습니다');
-			isEmailOk = false;
-		}
+		const jsonData = {
+			"code": code
+		};
+		$.ajax({
+			url: '/Farmstory2/user/authEmail.do',
+			type: 'POST',
+			data: jsonData,
+			dataType: 'json',
+			success: function(data) {
+				if (data.result > 0) {
+					$('.resultEmail').css('color', 'green').text('이메일이 인증 되었습니다.');
+					isEmailOk = true;
+
+				} else {
+					$('.resultEmail').css('color', red).text('인증에 실패했습니다');
+					isEmailOk = false;
+				}
+			}
+		});
 	});
 });
