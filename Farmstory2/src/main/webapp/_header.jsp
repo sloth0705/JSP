@@ -50,7 +50,7 @@
             <ul class="gnb">
                 <li><a href="/Farmstory2/introduction/hello.do">팜스토리소개</a></li>
                 <li><a href="/Farmstory2/market/list.do"><img src="/Farmstory2/images/head_menu_badge.png" alt="30%"/>장보기</a></li>
-                <li><a href="/Farmstory2/croptalk/story.do">농작물이야기</a></li>
+                <li><a href="/Farmstory2/board/list.do?pg=1&group=Croptalk&cate=story">농작물이야기</a></li>
                 <li><a href="/Farmstory2/event/event.do">이벤트</a></li>
                 <li><a href="/Farmstory2/community/notice.do">커뮤니티</a></li>
             </ul>

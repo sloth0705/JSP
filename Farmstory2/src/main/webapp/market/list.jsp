@@ -26,7 +26,6 @@
                 <li><a href="#">커뮤니티</a></li>
             </ul>
         </header>
-
         <div id="sub">
             <div><img src="../images/sub_top_tit2.png" alt="MARKET"></div>
             <section class="market">
@@ -44,7 +43,6 @@
                             HOME > 장보기 > <em>장보기</em>
                         </p>
                     </nav>
-
                     <!-- 내용 시작 -->
                     <p class="sort">
                         <a href="#" class="on">전체(10) |</a>
@@ -118,7 +116,6 @@
                             <td><strong>3,000</strong>원</td>
                         </tr>
                     </table>
-
                     <p class="paging">
                         <a href="#"><</a>
                         <a href="#" class="on">[1]</a>
@@ -128,15 +125,10 @@
                         <a href="#">[5]</a>
                         <a href="#">></a>
                     </p>
-
                     <!-- 내용 끝 -->
-
                 </article>
             </section>
-
         </div>
-        
-        
         <footer>
             <img src="../images/footer_logo.png" alt="로고"/>
             <p>
