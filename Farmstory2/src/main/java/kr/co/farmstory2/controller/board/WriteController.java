@@ -13,7 +13,6 @@ import com.oreilly.servlet.MultipartRequest;
 
 import kr.co.farmstory2.dto.ArticleDTO;
 import kr.co.farmstory2.dto.FileDTO;
-import kr.co.farmstory2.dto.UserDTO;
 import kr.co.farmstory2.service.ArticleService;
 import kr.co.farmstory2.service.FileService;
 
