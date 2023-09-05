@@ -154,6 +154,17 @@ public class ArticleDAO extends DBHelper {
 			logger.error("insertComment error : " + e.getMessage());
 		}
 	}
+	
+	public void deleteComment(String no) {
+		try {
+			psmt = getConnection().prepareStatement(SQL.DELETE_COMMENT);
+			psmt.setString(1, no);
+			psmt.executeUpdate();
+			close();
+		} catch (Exception e) {
+			logger.error("deleteComment error : " + e.getMessage());
+		}
+	}
 
 	public List<ArticleDTO> selectComments(String parent) {
 		List<ArticleDTO> comments = new ArrayList<ArticleDTO>();
@@ -187,6 +198,17 @@ public class ArticleDAO extends DBHelper {
 	public void plusComment(String no) {
 		try {
 			psmt = getConnection().prepareStatement(SQL.PLUS_COMMENT);
+			psmt.setString(1, no);
+			psmt.executeUpdate();
+			close();
+		} catch (Exception e) {
+			logger.error("plusComment error : " + e.getMessage());
+		}
+	}
+	
+	public void minusComment(String no) {
+		try {
+			psmt = getConnection().prepareStatement(SQL.MINUS_COMMENT);
 			psmt.setString(1, no);
 			psmt.executeUpdate();
 			close();

@@ -128,7 +128,7 @@
 							<textarea name="comment" readonly>${comment.content }</textarea>
 							<c:if test="${comment.writer eq sessUser.uid }">
 							<div>
-							    <a href="/Farmstory2/board/proc/commentDelete.jsp?no=${comment.no }&parent=${no }&group=${group }&cate=${cate}" class="del">삭제</a>
+							    <a href="/Farmstory2/board/commentDelete.do?no=${comment.no }&parent=${no }&group=${group }&cate=${cate}" class="del">삭제</a>
 							    <a href="#" class="can">취소</a>
 							    <a href="#" class="mod">수정</a>
 							</div>

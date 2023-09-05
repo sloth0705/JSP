@@ -154,4 +154,5 @@ public class SQL {
 	public static final String SELECT_FILE = "SELECT * FROM `File` WHERE `aNo` = ?";
 	public static final String SELECT_FILE_BY_FNO = "SELECT * FROM `File` WHERE `fNo` = ?";
 	public static final String PLUS_COMMENT = "UPDATE `Article` SET `comment` = `comment` + 1 WHERE `no` = ?";
+	public static final String MINUS_COMMENT = "UPDATE `Article` SET `comment` = `comment` - 1 WHERE `no` = ?";
 }

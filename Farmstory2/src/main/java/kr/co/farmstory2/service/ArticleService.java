@@ -124,11 +124,19 @@ public enum ArticleService {
 			dao.insertComment(dto);
 		}
 		
+		public void deleteComment(String no) {
+			dao.deleteComment(no);
+		}
+		
 		public List<ArticleDTO> selectComments(String parent) {
 			return dao.selectComments(parent);
 		}
 		
 		public void plusComment(String no) {
 			dao.plusComment(no);
+		}
+		
+		public void minusComment(String no) {
+			dao.minusComment(no);
 		}
 }
