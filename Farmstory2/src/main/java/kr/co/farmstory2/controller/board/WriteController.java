@@ -30,13 +30,8 @@ public class WriteController extends HttpServlet{
 		req.setAttribute("group", group);
 		req.setAttribute("cate", cate);
 		
-		UserDTO sessUser = (UserDTO)req.getSession().getAttribute("sessUser");
-		if (sessUser == null) {
-			resp.sendRedirect("/Farmstory2/user/login.do?success=101");
-		} else {
-			RequestDispatcher dispatcher = req.getRequestDispatcher("/board/write.jsp");
-			dispatcher.forward(req, resp);
-		}
+		RequestDispatcher dispatcher = req.getRequestDispatcher("/board/write.jsp");
+		dispatcher.forward(req, resp);
 	}
 	
 	@Override
