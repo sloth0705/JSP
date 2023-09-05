@@ -42,7 +42,7 @@
                 </c:choose>
                 <a href="/Farmstory2/user/register.do">회원가입 |</a>
                 <c:if test="${sessUser.role eq 'ADMIN' }">
-                <a href="/Farmstory2/admin/">관리자 |</a>
+                <a href="/Farmstory2/admin/index.do">관리자 |</a>
                 </c:if>
                 <a href="#">고객센터</a>
             </p>

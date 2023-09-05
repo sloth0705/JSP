@@ -155,4 +155,10 @@ public class SQL {
 	public static final String SELECT_FILE_BY_FNO = "SELECT * FROM `File` WHERE `fNo` = ?";
 	public static final String PLUS_COMMENT = "UPDATE `Article` SET `comment` = `comment` + 1 WHERE `no` = ?";
 	public static final String MINUS_COMMENT = "UPDATE `Article` SET `comment` = `comment` - 1 WHERE `no` = ?";
+	public static final String SELECT_COUNT_PRODUCTS_TOTAL = "SELECT COUNT(*) FROM `Product`";
+	public static final String SELECT_PRODUCTS = "SELECT * "
+												+ "FROM `Product` "
+												+ "WHERE `stock` > 0 "
+												+ "ORDER BY `rdate` DESC "
+												+ "LIMIT ?, 10";
 }

@@ -1,8 +1,6 @@
 package kr.co.farmstory2.dto;
 
-import java.io.File;
 import java.text.DecimalFormat;
-import java.util.UUID;
 
 public class ProductDTO {
 	private int pNo;
@@ -18,14 +16,9 @@ public class ProductDTO {
 	private String seller;
 	private String etc;
 	private String rdate;
-	private String path;
 
-	public ProductDTO(String path) {
-		this.path = path;
-	}
-	
 	public ProductDTO() {
-		
+
 	}
 
 	public int getpNo() {
@@ -63,7 +56,7 @@ public class ProductDTO {
 	public int getPrice() {
 		return price;
 	}
-	
+
 	public String getPriceWithComma() {
 		DecimalFormat df = new DecimalFormat("###,###");
 		return df.format(price);
@@ -80,7 +73,6 @@ public class ProductDTO {
 	public int getDelivery() {
 		return delivery;
 	}
-	
 
 	public String getDeliveryWithComma() {
 		DecimalFormat df = new DecimalFormat("###,###");
@@ -97,6 +89,11 @@ public class ProductDTO {
 
 	public int getStock() {
 		return stock;
+	}
+
+	public String getStockWithComma() {
+		DecimalFormat df = new DecimalFormat("###,###");
+		return df.format(stock);
 	}
 
 	public void setStock(int stock) {
@@ -126,10 +123,6 @@ public class ProductDTO {
 	public void setThumb1(String thumb1) {
 		this.thumb1 = thumb1;
 	}
-	
-	public void setThumb1ForRename(String thumb1) {
-		this.thumb1 = fileRename(thumb1);
-	}
 
 	public String getThumb2() {
 		return thumb2;
@@ -138,10 +131,6 @@ public class ProductDTO {
 	public void setThumb2(String thumb2) {
 		this.thumb2 = thumb2;
 	}
-	
-	public void setThumb2ForRename(String thumb2) {
-		this.thumb2 = fileRename(thumb2);
-	}
 
 	public String getThumb3() {
 		return thumb3;
@@ -149,10 +138,6 @@ public class ProductDTO {
 
 	public void setThumb3(String thumb3) {
 		this.thumb3 = thumb3;
-	}
-	
-	public void setThumb3ForRename(String thumb3) {
-		this.thumb3 = fileRename(thumb3);
 	}
 
 	public String getSeller() {
@@ -181,17 +166,5 @@ public class ProductDTO {
 
 	public void setRdate(String rdate) {
 		this.rdate = rdate;
-	}
-
-	public String fileRename(String thumb) {
-		int i = thumb.lastIndexOf(".");
-		String ext = thumb.substring(i);
-		String uuid = UUID.randomUUID().toString();
-		String sname = uuid + ext;
-
-		File f1 = new File(path + "/" + thumb);
-		File f2 = new File(path + "/" + sname);
-		f1.renameTo(f2);
-		return sname;
 	}
 }
