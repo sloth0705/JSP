@@ -115,7 +115,7 @@
 				     <h3>댓글목록</h3>
 				     <c:forEach var="comment" items="${comments}" varStatus="status">
 			         <article class="comment">
-				         <form action="/Farmstory2/board/proc/commentUpdate.jsp" method="post">
+				         <form action="/Farmstory2/board/commentUpdate.do" method="post">
 				         	<input type="hidden" name="no" value="${comment.no }">
 				         	<input type="hidden" name="parent" value="${no }">
 				         	<input type="hidden" name="group" value="${group }"/>

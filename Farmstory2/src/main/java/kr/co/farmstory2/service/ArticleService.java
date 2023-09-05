@@ -124,6 +124,10 @@ public enum ArticleService {
 			dao.insertComment(dto);
 		}
 		
+		public void updateComment(String no, String comment) {
+			dao.updateComment(no, comment);
+		}
+		
 		public void deleteComment(String no) {
 			dao.deleteComment(no);
 		}
