@@ -39,7 +39,7 @@ public class LoginController extends HttpServlet{
 			// 사용자 세션 설정
 			session.setAttribute("sessUser", user);
 
-			resp.sendRedirect("/Farmstory2/index.jsp");
+			resp.sendRedirect("/Farmstory2/index.do");
 		}
 	}
 }

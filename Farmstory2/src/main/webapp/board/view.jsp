@@ -106,7 +106,7 @@
 			    <div>
 			    	<c:if test="${sessUser.uid eq article.writer }">
 			        <a href="/Farmstory2/board/proc/deleteProc.jsp?no=${no }&group=${group }&cate=${cate}" class="btnDelete">삭제</a>
-			        <a href="/Farmstory2/board/modify.jsp?no=${no }&group=${group }&cate=${cate}" class="btnModify">수정</a>
+			        <a href="/Farmstory2/board/modify.do?no=${no }&group=${group }&cate=${cate}" class="btnModify">수정</a>
 			        </c:if>
 			        <a href="/Farmstory2/board/list.do?group=${group }&cate=${cate}" class="btnList">목록</a>
 			    </div>  
