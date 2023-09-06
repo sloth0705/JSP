@@ -29,7 +29,7 @@
 <body>
     <div id="container">
         <header>
-            <a href="/Farmstory2/index.jsp" class="logo"><img src="/Farmstory2/images/logo.png" alt="로고"/></a>
+            <a href="/Farmstory2/index.do" class="logo"><img src="/Farmstory2/images/logo.png" alt="로고"/></a>
             <p>
                 <a href="#">HOME |</a>
                 <c:choose>
