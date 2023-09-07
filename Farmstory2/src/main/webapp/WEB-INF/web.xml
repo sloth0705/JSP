@@ -27,18 +27,11 @@
   <filter-mapping>
     <filter-name>CheckLoginFilter</filter-name>
     <url-pattern>/board/write.do</url-pattern>
-  </filter-mapping>
-  <filter-mapping>
-    <filter-name>CheckLoginFilter</filter-name>
     <url-pattern>/board/view.do</url-pattern>
-  </filter-mapping>
-  <filter-mapping>
-    <filter-name>CheckLoginFilter</filter-name>
     <url-pattern>/board/modify.do</url-pattern>
-  </filter-mapping>
-  <filter-mapping>
-    <filter-name>CheckLoginFilter</filter-name>
     <url-pattern>/board/delete.do</url-pattern>
+    <url-pattern>/market/view.do</url-pattern>
+    <url-pattern>/market/order.do</url-pattern>
   </filter-mapping>
   <filter>
     <filter-name>SetCharacterEncodingFilter</filter-name>

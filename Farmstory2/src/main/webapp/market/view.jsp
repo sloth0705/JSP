@@ -1,6 +1,36 @@
 <%@ page contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
 <%@ include file="../_header.jsp" %>
 <%@ include file="./_aside.jsp" %>
+<script>
+	const price = ${product.price};
+	const delivery = ${product.delivery};
+	const pNo = ${product.pNo};
+	$(function() {
+		const firstTotal = price;
+		if (firstTotal < 30000) {
+			$('#delivery').text(delivery.toLocaleString() + "원");
+		} else {
+			$('#delivery').text("무료");
+		}
+		$('.total').text(firstTotal.toLocaleString() + "원");
+		$('input[name=count]').change(function() {
+			const count = $(this).val();
+			let total = price * count;
+			if (total < 30000) {
+				total += delivery;
+				$('#delivery').text(delivery.toLocaleString() + "원");
+			} else {
+				$('#delivery').text("무료");
+			}
+			$('.total').text(total.toLocaleString() + "원");
+		});
+		$('.btnOrder').click(function(e) {
+			e.preventDefault();
+			const count = $('input[name=count]').val();
+			location.href = "/Farmstory2/market/order.do?pNo=" + pNo + "&count=" + count;
+		});
+	});
+</script>
         <article class="view">
             <nav>
                 <img src="../images/sub_nav_tit_cate2_tit1.png" alt="장보기"/>
@@ -24,7 +54,7 @@
                     <tr>
                         <td>배송비</td>
                         <td>
-                            <span>${product.getDeliveryWithComma() }</span>원
+                            <span id="delivery">${product.getDeliveryWithComma() }</span>
                             <em>3만원 이상 무료배송</em>
                         </td>
                     </tr>
@@ -43,14 +73,13 @@
                         <td class="total">4,000원</td>
                     </tr>
                 </table>
-                <a href="./order.html" class="btnOrder">
+                <a href="#" class="btnOrder">
                     <img src="../images/market_btn_order.gif" alt="바로 구매하기"/>
                 </a>
             </div>
             <h3>상품설명</h3>
             <div class="detail">
                 <img src="/Farmstory2/upload/${product.thumb3 }" alt="">
-
             </div>
             <h3>배송정보</h3>
             <div class="delivery">
