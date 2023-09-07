@@ -80,6 +80,10 @@
 				return false;					
 			}
 		}
+		
+		$('.btnCancel').click(function() {
+			location.reload();
+		});
 	});
 </script>
 			<section class="view">

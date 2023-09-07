@@ -14,11 +14,19 @@ public enum ProductService {
 		dao.insertProduct(dto);
 	}
 	
+	public ProductDTO selectProduct(String pNo) {
+		return dao.selectProduct(pNo);
+	}
+	
 	public List<ProductDTO> selectProducts(int start) {
 		return dao.selectProducts(start);
 	}
 	
-	public int selectCountTotal() {
-		return dao.selectCountTotal();
+	public List<ProductDTO> selectProducts(int start, String cate) {
+		return dao.selectProducts(start, cate);
+	}
+	
+	public int selectCountTotal(String cate) {
+		return dao.selectCountTotal(cate);
 	}
 }

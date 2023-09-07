@@ -156,9 +156,16 @@ public class SQL {
 	public static final String PLUS_COMMENT = "UPDATE `Article` SET `comment` = `comment` + 1 WHERE `no` = ?";
 	public static final String MINUS_COMMENT = "UPDATE `Article` SET `comment` = `comment` - 1 WHERE `no` = ?";
 	public static final String SELECT_COUNT_PRODUCTS_TOTAL = "SELECT COUNT(*) FROM `Product`";
+	public static final String SELECT_COUNT_PRODUCTS_TOTAL_BY_CATE = "SELECT COUNT(*) FROM `Product` WHERE `type` = ?";
 	public static final String SELECT_PRODUCTS = "SELECT * "
 												+ "FROM `Product` "
 												+ "WHERE `stock` > 0 "
 												+ "ORDER BY `rdate` DESC "
 												+ "LIMIT ?, 10";
+	public static final String SELECT_PRODUCTS_BY_CATE = "SELECT * "
+														+ "FROM `Product` "
+														+ "WHERE `stock` > 0 "
+														+ "AND `type` = ? "
+														+ "ORDER BY `rdate` DESC "
+														+ "LIMIT ?, 10";
 }

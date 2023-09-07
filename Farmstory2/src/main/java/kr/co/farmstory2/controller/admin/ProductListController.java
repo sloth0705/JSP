@@ -38,7 +38,7 @@ public class ProductListController extends HttpServlet {
 		int start = (currentPage - 1) * 10;
 
 		// 전체 개시물 갯수 조회
-		total = pService.selectCountTotal();
+		total = pService.selectCountTotal(null);
 
 		if (total % 10 == 0) {
 			lastPageNum = total / 10;
